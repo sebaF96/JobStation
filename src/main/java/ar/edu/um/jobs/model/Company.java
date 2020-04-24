@@ -2,6 +2,8 @@ package ar.edu.um.jobs.model;
 
 import lombok.*;
 
+import javax.persistence.*;
+import java.io.Serializable;
 import java.util.List;
 
 @Getter
@@ -9,13 +11,13 @@ import java.util.List;
 @NoArgsConstructor
 @AllArgsConstructor
 
+@Entity
+public class Company extends User implements Serializable {
 
-public class Company extends User {
-
-    private Long id;
     private String name;
     private String location;
 
+    @OneToMany(mappedBy = "company")
     private List<Job> jobs;
 
 }

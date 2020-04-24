@@ -2,6 +2,8 @@ package ar.edu.um.jobs.model;
 
 import lombok.*;
 
+import javax.persistence.*;
+import java.io.Serializable;
 import java.time.LocalDate;
 import java.util.List;
 
@@ -10,13 +12,13 @@ import java.util.List;
 @AllArgsConstructor
 @NoArgsConstructor
 
+@Entity
+public class Developer extends User implements Serializable {
 
-public class Developer extends User {
-
-    private Long id;
     private String name;
     private LocalDate dob;
     private String address;
     private Integer phone_number;
+    @OneToMany(mappedBy = "job_id")
     private List<Job> jobs_id;
 }
