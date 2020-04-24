@@ -18,7 +18,7 @@ public class Developer extends User implements Serializable {
     private String name;
     private LocalDate dob;
     private String address;
+    private String biography;
     private Integer phone_number;
-    @OneToMany(mappedBy = "job_id")
-    private List<Job> jobs_id;
+
 }

@@ -12,7 +12,6 @@ import java.io.Serializable;
 @EqualsAndHashCode
 
 @Entity
-@Table(name = "job")
 public class Job implements Serializable {
 
     @Id
