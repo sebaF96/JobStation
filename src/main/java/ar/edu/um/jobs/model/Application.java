@@ -18,9 +18,9 @@ public class Application implements Serializable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long application_id;
     @OneToOne
-    private Job job_id;
+    private Job job;
     @OneToOne
-    private Developer user_id;
+    private Developer developer;
     @Enumerated(EnumType.STRING)
     private Seniority seniority;
     private Integer years_xp;

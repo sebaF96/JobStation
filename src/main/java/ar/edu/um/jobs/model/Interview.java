@@ -5,6 +5,7 @@ import lombok.*;
 
 import javax.persistence.*;
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 
 @Getter
 @Setter
@@ -19,10 +20,10 @@ public class Interview {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long interview_id;
     @OneToOne
-    private Application application_id;
-    private LocalDate date;
+    private Application application;
+    private LocalDateTime date;
     @OneToOne
-    private Developer developer_id;
+    private Developer developer;
     private String description;
 
 
