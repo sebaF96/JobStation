@@ -10,7 +10,7 @@ import java.io.Serializable;
 @NoArgsConstructor
 @AllArgsConstructor
 @EqualsAndHashCode
-
+@ToString
 @Entity
 public class Job implements Serializable {
 
