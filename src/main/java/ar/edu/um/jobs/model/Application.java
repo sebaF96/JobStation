@@ -1,5 +1,6 @@
 package ar.edu.um.jobs.model;
 
+import ar.edu.um.jobs.service.Identificable;
 import lombok.*;
 
 import javax.persistence.*;
@@ -10,9 +11,9 @@ import java.io.Serializable;
 @AllArgsConstructor
 @NoArgsConstructor
 @EqualsAndHashCode
-
+@ToString
 @Entity
-public class Application implements Serializable {
+public class Application implements Serializable, Identificable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -27,4 +28,8 @@ public class Application implements Serializable {
     private Boolean speaks_english;
     private Integer priority;
 
+    @Override
+    public Long getId() {
+        return this.application_id;
+    }
 }
