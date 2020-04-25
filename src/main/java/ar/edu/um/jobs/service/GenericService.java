@@ -3,12 +3,17 @@ package ar.edu.um.jobs.service;
 import java.util.List;
 import java.util.Optional;
 
-public interface GenericService<T,Id>{
+public interface GenericService<T> {
     T create(T entity);
-    void remove(Id value);
+
+    void remove(Long value);
+
     T update(T value);
-   Optional <T> get(Id value);
+
+    Optional<T> get(Long value);
+
     List<T> getAll();
 
+    boolean validate(Long value);
 
 }

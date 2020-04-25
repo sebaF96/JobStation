@@ -1,5 +1,6 @@
 package ar.edu.um.jobs.model;
 
+import ar.edu.um.jobs.service.Identificable;
 import lombok.*;
 
 import javax.persistence.Entity;
@@ -17,7 +18,7 @@ import java.io.Serializable;
 @ToString
 
 @Entity
-public abstract class User implements Serializable {
+public abstract class User implements Serializable, Identificable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -26,4 +27,8 @@ public abstract class User implements Serializable {
     private String password;
 
 
+    @Override
+    public Long getId() {
+        return this.user_id;
+    }
 }
