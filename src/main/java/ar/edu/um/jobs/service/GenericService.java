@@ -1,9 +1,14 @@
 package ar.edu.um.jobs.service;
 
-public interface Service <t>{
-    void create(t value);
-    void remove(t value);
-    void update(t value);
+import java.util.List;
+import java.util.Optional;
+
+public interface GenericService<T,Id>{
+    T create(T entity);
+    void remove(Id value);
+    T update(T value);
+   Optional <T> get(Id value);
+    List<T> getAll();
 
 
 }

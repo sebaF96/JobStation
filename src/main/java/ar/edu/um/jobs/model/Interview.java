@@ -1,6 +1,7 @@
 package ar.edu.um.jobs.model;
 
 
+import ar.edu.um.jobs.service.Identificable;
 import lombok.*;
 
 import javax.persistence.*;
@@ -12,9 +13,10 @@ import java.time.LocalDateTime;
 @NoArgsConstructor
 @AllArgsConstructor
 @EqualsAndHashCode
+@ToString
 
 @Entity
-public class Interview {
+public class Interview implements Identificable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -27,4 +29,9 @@ public class Interview {
     private String description;
 
 
+
+    @Override
+    public Long getId() {
+        return this.interview_id;
+    }
 }

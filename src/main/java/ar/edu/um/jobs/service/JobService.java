@@ -10,7 +10,7 @@ import org.springframework.stereotype.Service;
 import java.util.Optional;
 
 @Service
-public class JobService {
+public class JobService  {
 
     @Autowired
     private final JobRepository jobRepository;
@@ -48,4 +48,6 @@ public class JobService {
             jobRepository.save(job);
         }
     }
+
+
 }

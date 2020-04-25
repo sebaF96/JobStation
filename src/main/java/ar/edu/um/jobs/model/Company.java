@@ -1,5 +1,6 @@
 package ar.edu.um.jobs.model;
 
+import ar.edu.um.jobs.service.Identificable;
 import lombok.*;
 
 import javax.persistence.*;
@@ -10,9 +11,10 @@ import java.util.List;
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
+@ToString
 
 @Entity
-public class Company extends User implements Serializable {
+public class Company extends User implements Serializable, Identificable {
 
     private String name;
     private String location;
@@ -20,4 +22,8 @@ public class Company extends User implements Serializable {
     @OneToMany(mappedBy = "company")
     private List<Job> jobs;
 
+    @Override
+    public  Long getId() {
+        return super.getUser_id();
+    }
 }

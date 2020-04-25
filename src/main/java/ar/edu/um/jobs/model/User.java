@@ -17,7 +17,7 @@ import java.io.Serializable;
 @ToString
 
 @Entity
-public class User implements Serializable {
+public abstract class User implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

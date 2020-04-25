@@ -1,5 +1,6 @@
 package ar.edu.um.jobs.model;
 
+import ar.edu.um.jobs.service.Identificable;
 import lombok.*;
 
 import javax.persistence.*;
@@ -12,7 +13,7 @@ import java.io.Serializable;
 @EqualsAndHashCode
 @ToString
 @Entity
-public class Job implements Serializable {
+public class Job implements Serializable, Identificable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -26,4 +27,8 @@ public class Job implements Serializable {
     private Integer available_slots;
 
 
+    @Override
+    public Long getId() {
+        return this.job_id;
+    }
 }
