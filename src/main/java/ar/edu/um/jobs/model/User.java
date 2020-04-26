@@ -25,6 +25,7 @@ public abstract class User implements Serializable, Identificable {
     private Long user_id;
     private String email;
     private String password;
+    private String roles;
 
 
     @Override

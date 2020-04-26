@@ -1,5 +1,6 @@
 package ar.edu.um.jobs.security;
 
+import ar.edu.um.jobs.service.MyUserDetailsService;
 import org.springframework.context.annotation.Bean;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
@@ -14,7 +15,7 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 
     private final UserDetailsService userDetailsService;
 
-    public SecurityConfiguration(UserDetailsService userDetailsService) {
+    public SecurityConfiguration(MyUserDetailsService userDetailsService) {
         this.userDetailsService = userDetailsService;
     }
 
@@ -26,8 +27,9 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         http.authorizeRequests()
-                .antMatchers("/admin").hasRole("ADMIN")
-                .antMatchers("/user").hasAnyRole("ADMIN", "USER")
+                .antMatchers("/company", "/company/").hasRole("COMPANY")
+                .antMatchers("/user").hasAnyRole("COMPANY", "DEVELOPER")
+                .antMatchers("/developer").hasAnyRole("DEVELOPER")
                 .antMatchers("/").permitAll()
                 .and().formLogin();
     }

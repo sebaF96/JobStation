@@ -40,6 +40,7 @@ public class test {
         dev.setPhone_number(2828930);
         dev.setEmail("ruben@fisica.com");
         dev.setPassword("fluidos");
+        dev.setRoles("ROLE_DEVELOPER");
 
         userRepository.save(dev);
 
@@ -49,6 +50,7 @@ public class test {
         company.setName("Google");
         company.setEmail("google@gmail.com");
         company.setPassword("12346");
+        company.setRoles("ROLE_COMPANY");
 
         userRepository.save(company);
 
