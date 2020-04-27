@@ -6,15 +6,23 @@
     <link rel="stylesheet" href="../static/css/style-developer.css">
 </head>
 <body>
-<section class="form-register">
-    <h4> Form Register Developer</h4>
-    <input class="controls" type="email" name="email" id="email" placeholder="Into your E-Mail">
-    <input class="controls" type="text" name="username" id="username" placeholder="Into your username">
-    <input class="controls" type="password" name="password" id="password" placeholder="password">
-    <input class="controls" type="date" name="birth" id="birth" placeholder="Into your Birth">
-    <input class="controls" type="text" name="address" id="address" placeholder="Into your Address">
-    <input class="controls" type="text" name="phoneNumber" id="phoneNumber" placeholder="Into your Phone Number">
-    <input class="botons" type="submit" value="Register Developer">
-</section>
+<div class="form-register">
+    <div class="row">
+        <div class="col-md-10">
+            <h4> Form Register Developer</h4>
+            <label>Into your E-Mail</label><input class="controls" type="email" name="email" id="email">
+            <label>Into your username</label><input class="controls" type="text" name="username" id="username">
+            <label>Password</label><input class="controls" type="password" name="password" id="password">
+        </div>
+        <div class="col-md-2">
+            <label>Into your Birth</label><input class="controls" type="date" name="birth" id="birth">
+            <label>Into your Address</label><input class="controls" type="text" name="address" id="address">
+            <label>Into your Phone Number</label><input class="controls" type="text" name="phoneNumber"
+                                                        id="phoneNumber">
+            <label>Into your Byography</label><input class="controls" type="text" name = "byography" id="biography">
+            <input class="botons" type="submit" value="Register Developer">
+        </div>
+    </div>
+</div>
 </body>
 </html>
