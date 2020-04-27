@@ -1,9 +1,7 @@
-package ar.edu.um.jobs.service;
+package ar.edu.um.jobs.security;
 
-import ar.edu.um.jobs.model.MyUserDetails;
 import ar.edu.um.jobs.model.User;
 import ar.edu.um.jobs.repository.UserRepository;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
@@ -21,10 +19,10 @@ public class MyUserDetailsService implements UserDetailsService {
     }
 
     @Override
-    public UserDetails loadUserByUsername(String userName) throws UsernameNotFoundException {
-        Optional<User> user = userRepository.findByEmail(userName);
+    public UserDetails loadUserByUsername(String email) throws UsernameNotFoundException {
+        Optional<User> user = userRepository.findByEmail(email);
 
-        user.orElseThrow(() -> new UsernameNotFoundException("Not found: " + userName));
+        user.orElseThrow(() -> new UsernameNotFoundException("Not found: " + email));
 
         return user.map(MyUserDetails::new).get();
     }

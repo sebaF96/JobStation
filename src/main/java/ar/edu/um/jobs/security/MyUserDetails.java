@@ -1,5 +1,6 @@
-package ar.edu.um.jobs.model;
+package ar.edu.um.jobs.security;
 
+import ar.edu.um.jobs.model.User;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
