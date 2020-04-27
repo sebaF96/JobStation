@@ -2,11 +2,12 @@ package ar.edu.um.jobs.service;
 
 import ar.edu.um.jobs.model.Application;
 import ar.edu.um.jobs.repository.ApplicationRepository;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.stereotype.Service;
 
-public class ApplicationService extends GenericServImpl<Application> {
-    @Autowired
+@Service
+public class ApplicationService extends GenericServiceImpl<Application> {
+
     private final ApplicationRepository applicationRepository;
 
     public ApplicationService(ApplicationRepository applicationRepository) {

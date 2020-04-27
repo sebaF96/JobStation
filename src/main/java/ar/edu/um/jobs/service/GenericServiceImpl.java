@@ -5,7 +5,7 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import java.util.List;
 import java.util.Optional;
 
-public abstract class GenericServImpl<T extends Identificable> implements GenericService<T> {
+public abstract class GenericServiceImpl<T extends Identificable> implements GenericService<T> {
     @Override
     public boolean validate(Long value) {
         return getRepository().findById(value).isPresent();

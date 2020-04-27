@@ -12,6 +12,7 @@ import java.io.Serializable;
 @AllArgsConstructor
 @EqualsAndHashCode
 @ToString
+
 @Entity
 public class Job implements Serializable, Identificable {
 

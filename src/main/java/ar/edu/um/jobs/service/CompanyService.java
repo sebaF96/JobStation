@@ -7,7 +7,6 @@ import ar.edu.um.jobs.repository.ApplicationRepository;
 import ar.edu.um.jobs.repository.InterviewRepository;
 import ar.edu.um.jobs.repository.JobRepository;
 import ar.edu.um.jobs.repository.UserRepository;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Service;
 
@@ -17,8 +16,8 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 @Service
-public class CompanyService extends GenericServImpl<User> {
-    @Autowired
+public class CompanyService extends GenericServiceImpl<User> {
+
     private final UserRepository companyRepository;
     private final ApplicationRepository applicationRepository;
     private final JobRepository jobRepository;
