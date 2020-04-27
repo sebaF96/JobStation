@@ -5,6 +5,7 @@ import ar.edu.um.jobs.service.Identificable;
 import lombok.*;
 
 import javax.persistence.*;
+import java.io.Serializable;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 
@@ -16,7 +17,7 @@ import java.time.LocalDateTime;
 @ToString
 
 @Entity
-public class Interview implements Identificable {
+public class Interview implements Identificable, Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -27,7 +28,6 @@ public class Interview implements Identificable {
     @OneToOne
     private Developer developer;
     private String description;
-
 
 
     @Override

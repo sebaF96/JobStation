@@ -1,6 +1,7 @@
 package ar.edu.um.jobs.repository;
 
 
+import ar.edu.um.jobs.model.Company;
 import ar.edu.um.jobs.model.Developer;
 import ar.edu.um.jobs.model.Interview;
 import ar.edu.um.jobs.model.User;
@@ -11,5 +12,7 @@ import java.util.List;
 
 @Repository
 public interface InterviewRepository extends JpaRepository<Interview, Long> {
+
     List<Interview> findByDeveloper(User developer);
+
 }

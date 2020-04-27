@@ -20,6 +20,7 @@ public class test {
     private final InterviewRepository interviewRepository;
     private final CompanyService companyService;
     private final DeveloperService developerService;
+
     public test(UserRepository userRepository, JobRepository jobRepository, ApplicationRepository applicationRepository, InterviewRepository interviewRepository, CompanyService companyService, DeveloperService developerService) {
         this.userRepository = userRepository;
         this.jobRepository = jobRepository;
@@ -106,9 +107,11 @@ public class test {
         interviewRepository.save(in);*/
         System.out.println(companyService.listApplications((long) 5));
         System.out.println(developerService.listInterviews((long) 12));
-        System.out.println(developerService.listApplications((long)12));
-        System.out.println(developerService.get((long)12));
-        System.out.println(companyService.get((long)14));
+        System.out.println(developerService.listApplications((long) 12));
+        System.out.println(developerService.get((long) 12));
+        System.out.println(companyService.get((long) 14));
+        System.out.println("\n\n");
+        System.out.println(companyService.listInterviews((long) 14));
         return "probe";
     }
 }
