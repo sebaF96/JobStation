@@ -1,6 +1,7 @@
 package ar.edu.um.jobs.controller;
 
 
+import ar.edu.um.jobs.model.Developer;
 import ar.edu.um.jobs.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -23,7 +24,7 @@ public class HomeController {
 
     @GetMapping("/user")
     public String user() {
-        return ("<h1>Welcome User</h1>");
+        return ("<h1>Welcome User</h1>" + userRepository.getCurrentUser().get().getId());
     }
 
     @GetMapping("/company/2")
