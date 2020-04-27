@@ -12,6 +12,7 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
+import java.util.Comparator;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -49,7 +50,7 @@ public class CompanyService extends GenericServImpl<User> {
                     .stream()
                     .filter(interview -> interview.getApplication().getJob().getCompany().getId().equals(companyId))
                     .filter(interview -> interview.getDate().isAfter(LocalDateTime.now()))
-                    .sorted()
+                    .sorted(Comparator.comparing(Interview::getDate))
                     .collect(Collectors.toList());
         } else {
             return null;
