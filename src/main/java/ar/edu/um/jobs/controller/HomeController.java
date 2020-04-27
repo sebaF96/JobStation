@@ -2,10 +2,13 @@ package ar.edu.um.jobs.controller;
 
 
 import ar.edu.um.jobs.model.Developer;
+import ar.edu.um.jobs.model.User;
 import ar.edu.um.jobs.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
+
+import java.util.Optional;
 
 @RestController
 public class HomeController {
@@ -19,12 +22,26 @@ public class HomeController {
 
     @GetMapping("/")
     public String home() {
-        return ("<h1>Welcome HOME</h1>");
+        Optional<User> currentUser = userRepository.getCurrentUser();
+
+        String msg = currentUser.map(usr -> "<h1> Welcome " + usr.getEmail() + "</h1>")
+                .orElse("<h1> Welcome deslogueado </h1>");
+
+        return msg;
     }
 
     @GetMapping("/user")
     public String user() {
-        return ("<h1>Welcome User</h1>" + userRepository.getCurrentUser().get().getId());
+        Optional<User> currentUser = userRepository.getCurrentUser();
+
+        if (currentUser.get().getClass() == Developer.class) {
+            return "Welcome developer!! " + currentUser.get().getRoles();
+        } else {
+            return "Welcome company!! " + currentUser.get().getRoles();
+
+        }
+
+
     }
 
     @GetMapping("/company/2")
@@ -40,7 +57,7 @@ public class HomeController {
 
     @GetMapping("/company")
     public String company() {
-        return ("<h1>Welcome Company</h1>");
+        return ("<h1>Pagina que solo deberian ver las company</h1>");
     }
 }
 
