@@ -46,7 +46,7 @@ public class CompanyService extends GenericServiceImpl<User> {
     public List<Application> listApplications(Long companyId) {
         List<Application> applications = new ArrayList<>();
 
-        if (companyRepository.findById(companyId).isPresent()) {
+        if (this.get(companyId).isPresent()) {
             applications = applicationRepository.findAll()
                     .stream()
                     .filter(a -> a.getJob().getCompany().getId().equals(companyId))
@@ -60,7 +60,7 @@ public class CompanyService extends GenericServiceImpl<User> {
     public List<Interview> listInterviews(Long companyId) {
         List<Interview> interviews = new ArrayList<>();
 
-        if (companyRepository.findById(companyId).isPresent()) {
+        if (this.get(companyId).isPresent()) {
             interviews = interviewRepository.findAll()
                     .stream()
                     .filter(interview -> interview.getApplication().getJob().getCompany().getId().equals(companyId))

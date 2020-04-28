@@ -9,6 +9,7 @@ import ar.edu.um.jobs.repository.UserRepository;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Service
@@ -30,17 +31,20 @@ public class DeveloperService extends GenericServiceImpl<User> {
     }
 
     public List<Interview> listInterviews(Long developerId) {
-        if (developerRepository.findById(developerId).isPresent()) {
-            return interviewRepository.findByDeveloper(developerRepository.findById(developerId).get());
-        } else {
-            return null;
+        List<Interview> interviews = new ArrayList<>();
+
+        if (this.get(developerId).isPresent()) {
+            interviews = interviewRepository.findByDeveloper(this.get(developerId).get());
         }
+        return interviews;
     }
 
+
     public List<Application> listApplications(Long developerId) {
-        if (developerRepository.findById(developerId).isPresent()) {
-            return applicationRepository.findByDeveloper(developerRepository.findById(developerId).get());
+        List<Application> applications = new ArrayList<>();
+        if (this.get(developerId).isPresent()) {
+            applications = applicationRepository.findByDeveloper(this.get(developerId).get());
         }
-        return null;
+        return applications;
     }
 }
