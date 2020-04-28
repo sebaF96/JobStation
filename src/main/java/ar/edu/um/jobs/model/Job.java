@@ -26,6 +26,7 @@ public class Job implements Serializable, Identificable {
     @Enumerated(EnumType.STRING)
     private JobType job_type;
     private Integer available_slots;
+    private String description;
 
 
     @Override
