@@ -15,6 +15,17 @@ public class ApplicationService extends GenericServiceImpl<Application> {
     }
 
     @Override
+    public Application create(Application application) {
+        Integer priority = 0;
+        priority += application.getYears_xp();
+        priority += application.getSpeaks_english() ? 4 : 0;
+        priority += application.getSeniority().getPriority();
+        application.setPriority(priority);
+
+        return applicationRepository.save(application);
+    }
+
+    @Override
     JpaRepository<Application, Long> getRepository() {
         return applicationRepository;
     }

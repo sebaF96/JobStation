@@ -53,7 +53,7 @@ public class CompanyService extends GenericServiceImpl<User> {
                     .collect(Collectors.toList());
 
         }
-        return applications;
+        return applications.stream().sorted((x, y) -> y.getPriority().compareTo(x.getPriority())).collect(Collectors.toList());
     }
 
 

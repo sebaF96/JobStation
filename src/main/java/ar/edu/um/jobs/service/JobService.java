@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Service
 public class JobService extends GenericServiceImpl<Job> {
@@ -33,7 +34,7 @@ public class JobService extends GenericServiceImpl<Job> {
             applications = applicationRepository.findByJob(this.get(jobId).get());
         }
 
-        return applications;
+        return applications.stream().sorted((x, y) -> y.getPriority().compareTo(x.getPriority())).collect(Collectors.toList());
 
     }
 
