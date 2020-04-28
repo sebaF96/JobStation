@@ -35,9 +35,13 @@ public class CompanyService extends GenericServiceImpl<User> {
         return companyRepository;
     }
 
-    public List<Application> listApplications(Long jobId) {
-        if (jobRepository.findById(jobId).isPresent()) {
-            return applicationRepository.findByJob(jobRepository.findById(jobId).get());
+    public List<Application> listApplications(Long companyId) {
+        if (companyRepository.findById(companyId).isPresent()) {
+            return applicationRepository.findAll()
+                    .stream()
+                    .filter(a -> a.getJob().getCompany().getId().equals(companyId))
+                    .collect(Collectors.toList());
+
         } else {
             return null;
         }
