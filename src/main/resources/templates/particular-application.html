@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
     <title>Particular Application</title>
@@ -9,17 +9,17 @@
 <h1 class="title">Particular Application</h1>
 <div class="container">
     <div class="row">
-        <div class="card">
+        <div class="card" th:object="${app}">
             <h4>Developer Information</h4>
-            <p>Full Name: William Wallace</p>
-            <p>E-Mail: Dev@gmail.com</p>
-            <p>Address: Chubut 330</p>
-            <p>Phone Number: 123658447</p>
-            <p>Seniority: Senior</p>
-            <p>Years of Experience: 15</p>
-            <p>English Speak: Yes</p>
-            <p>Biography: Lorem Ipsum is simply dummy text of the printing and typesetting industry.</p>
-            <a href="#">Leer más</a>
+            <p th:text="'Full Name: '+'app.developer.name'"></p>
+            <p th:text="'E-mail: '+'app.developer.email'"></p>
+            <p th:text="'Address: '+'app.developer.address'"></p>
+            <p th:text="'Phone Number: '+'app.developer.phone_number'"></p>
+            <p th:text="'Seniority: '+'app.developer.seniority'"></p>
+            <p th:text="'Years of Experience: '+'app.years_xp'"></p>
+            <p th:text="'Speak English: '+'app.speaks_english'"></p>
+            <p th:text="'Biography: '+'app.developer.biography'"></p>
+            <a href="#">See more</a>
         </div>
         <a href="#" class="btn btn-success">Accept</a>
         <a href="#" class="btn btn-danger">Decline</a>
