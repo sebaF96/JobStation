@@ -1,23 +1,39 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
     <title>Form Application Registry</title>
-    <link rel="stylesheet" href="../static/css/style-developer.css">
+    <link rel="stylesheet" href="../static/css/style-developer.css" th:href="@{/css/style-developer.css}">
 </head>
 <body>
 <div class="row">
     <div class="col-md-12">
-        <div class="form-register">
-            <h4> Form Application Register </h4>
-            <label>Into your Seniority</label><input class="controls" type="text" name="seniority" id="seniority">
-            <label>Into years Experience</label><input class="controls" type="text" name="year-experience"
-                                                       id="year-experience">
-            <p>Do you speak English?</p>
-            <input type="radio" name="boton"> Yes
-            <input type="radio" name="boton"> No<br>
-            <input class="botons" type="submit" value="Apply to Work">
-        </div>
+        <form method="post" th:action="@{${action}}" th:object="${application}">
+            <div class="form-register">
+                <h4> Form Application Register </h4>
+                <label>Years of experience</label>
+                <input th:field="*{years_xp}" class="controls" type="number" name="years-experience"
+                       id="years-experience" min="0">
+                <label>Do you speak English?</label>
+
+                <select class="form-control form-control-lg" th:field="*{speaks_english}">
+
+                    <option th:value="false"
+                            th:text="NO"></option>
+                    <option th:value="true"
+                            th:text="YES"></option>
+                </select>
+
+                <br>
+                <label>Seniority</label>
+                <select class="form-control form-control-lg" th:field="*{seniority}">
+                    <option value="null" hidden>Select Seniority</option>
+                    <option th:each="seniority : ${seniorities}" th:value="${seniority.name()}"
+                            th:text="${seniority.toString()}"></option>
+                </select>
+                <input class="botons" type="submit" value="Apply to Work">
+            </div>
+        </form>
     </div>
 </div>
 </body>

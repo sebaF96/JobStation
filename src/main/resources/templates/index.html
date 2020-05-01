@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Index</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+          integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+</head>
+
+<body>
+
+<h1 class="title"> JobStation </h1>
+<br>
+<div class="container">
+    <div class="row">
+        <div th:each="job : ${jobs}">
+            <div class="card" style="width: 18rem;">
+                <div class="card-body">
+                    <h5 class="card-title" th:text="${job.job_title}">Title</h5>
+                    <p class="card-text" th:text="'Description: ' + ${job.description}">Description</p>
+                </div>
+                <ul class="list-group list-group-flush">
+                    <li class="list-group-item" th:text="'Company: ' + ${job.company.name}">Company name</li>
+                    <li class="list-group-item" th:text="'Job Type: ' + ${job.job_type}">Job Type</li>
+                    <li class="list-group-item" th:text="'Slots: ' + ${job.available_slots}">Slot</li>
+                </ul>
+                <div class="card-body">
+                    <a href="#" class="card-link">See More</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+</html>

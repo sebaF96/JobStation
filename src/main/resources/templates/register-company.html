@@ -1,21 +1,23 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
     <title>Form Register Company</title>
-    <link rel="stylesheet" href="../static/css/style-developer.css">
+    <link rel="stylesheet" href="/static/css/style-developer.css" th:href="@{/css/style-developer.css}">
 </head>
 <body>
 <div class="row">
     <div class="col-md-12">
-        <div class="form-register">
-            <h4> Form Register Company</h4>
-            <label>Into your Company Name</label><input class="controls" type="text" name="name" id="name">
-            <label>Into your Company Location</label><input class="controls" type="text" name="location" id="location">
-            <label>Into your Company E-Mail</label><input class="controls" type="email" name="email" id="email">
-            <label>Into your Password</label><input class="controls" type="password" name="password" id="password">
-            <input class="botons" type="submit" value="Register Company">
-        </div>
+        <form method="post" th:action="@{/comp/register}" th:object="${company}">
+            <div class="form-register">
+                <h4> Form Register Company</h4>
+                <label>Company Name</label><input th:field="*{name}" class="controls" type="text" name="name" id="name">
+                <label>Company Location</label><input th:field="*{location}" class="controls" type="text" name="location" id="location">
+                <label>Company E-Mail</label><input th:field="*{email}" class="controls" type="email" name="email" id="email">
+                <label>Password</label><input th:field="*{password}" class="controls" type="password" name="password" id="password">
+                <button class="botons" type="submit" value="Register Company">Register</button>
+            </div>
+        </form>
     </div>
 </div>
 </body>

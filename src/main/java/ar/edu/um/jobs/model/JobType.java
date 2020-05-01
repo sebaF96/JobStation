@@ -1,5 +1,7 @@
 package ar.edu.um.jobs.model;
 
+import java.util.List;
+
 public enum JobType {
     FULL_TIME("Full-Time"),
     PART_TIME("Part-Time"),
@@ -12,6 +14,7 @@ public enum JobType {
     JobType(String type) {
         this.type = type;
     }
+
 
     @Override
     public String toString() {

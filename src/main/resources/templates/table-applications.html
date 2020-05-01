@@ -1,9 +1,14 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>Table Applications Job</title>
-    <link rel="stylesheet" href="../static/css/tables.css">
+    <title th:text="'Applications of: ' + ${job}">Table Company Jobs</title>
+    <link rel="stylesheet" th:href="@{/css/tables.css}">
+    <link rel="stylesheet" th:href="@{/css/bootstrap.css}">
+    <link rel="stylesheet" th:href="@{/css/bootstrap-grid.css}">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+          integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
 </head>
 <body>
 <div class="main-container">
@@ -13,31 +18,26 @@
             <table>
 
                 <thead>
-                <h4> Table Applications </h4>
+                <h4 th:text="'Applications of: ' + ${job}"> Applications </h4>
                 <tr>
                     <th>E-Mail</th>
-                    <th>Full Name</th>
+                    <th>Dev. name</th>
                     <th>Seniority</th>
-                    <th>Years_XP</th>
-                    <th>Speak_English</th>
+                    <th>Years of experience</th>
+                    <th>Speaks english</th>
                 </tr>
                 </thead>
-                <tr>
-                    <td>nacho@gmail.com</td>
-                    <td>Ignacio Fernandez</td>
-                    <td>30 years</td>
-                    <td>10</td>
-                    <td>YES</td>
+                <tbody>
+                <tr th:each="app : ${applications}" style="color: white">
+                    <td th:text="${app.developer.email}">nacho@gmail.com</td>
+                    <td th:text="${app.developer.name}">Ignacio Fernandez</td>
+                    <td th:text="${app.seniority.toString()}">30 years</td>
+                    <td th:text="${app.years_xp}">10</td>
+                    <td th:text="${app.speaks_english} ? 'YES': 'NO'">YES</td>
                     <td><a href="#" class="btn btn-primary">View App</a></td>
                 </tr>
-                <tr>
-                    <td>Gonzalito@gmail.com</td>
-                    <td>Gonzalo Montiel</td>
-                    <td>22 years</td>
-                    <td>3</td>
-                    <td>No</td>
-                    <td><a href="#" class="btn btn-primary">View App</a></td>
-                </tr>
+                </tbody>
+
             </table>
         </div>
     </div>

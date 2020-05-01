@@ -8,7 +8,7 @@ public interface GenericService<T> {
 
     void remove(Long value);
 
-    T update(T value);
+    void update(T value);
 
     Optional<T> get(Long value);
 

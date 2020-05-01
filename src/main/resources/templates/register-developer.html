@@ -1,24 +1,26 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:inputth="http://www.w3.org/1999/html">
 <head>
     <meta charset="UTF-8">
     <title>Form Register Developer</title>
-    <link rel="stylesheet" href="../static/css/style-developer.css">
+    <link rel="stylesheet" href="../static/css/style-developer.css" th:href="@{/css/style-developer.css}" >
 </head>
 <body>
 <div class="form-register">
     <div class="row">
         <div class="col-md-12">
+            <form method="post" th:action="@{/dev/register}" th:object="${developer}">
             <h4> Form Register Developer</h4>
-            <label>Into your E-Mail</label><input class="controls" type="email" name="email" id="email">
-            <label>Into your FullName</label><input class="controls" type="text" name="fullname" id="fullname">
-            <label>Password</label><input class="controls" type="password" name="password" id="password">
-            <label>Into your Birth</label><input class="controls" type="date" name="birth" id="birth">
-            <label>Into your Address</label><input class="controls" type="text" name="address" id="address">
-            <label>Into your Phone Number</label><input class="controls" type="text" name="phoneNumber"
+            <label>E-Mail</label><input th:field="*{email}"class="controls" type="email" name="email" id="email">
+            <label>Full Name</label><input th:field="*{name}"class="controls" type="text" name="fullname" id="fullname">
+            <label>Password</label><input th:field="*{password}"class="controls" type="password" name="password" id="password">
+            <label>Date of Birth</label><input pattern="yyyy-MM-dd" th:field="*{dob}"class="controls" type="date" name="birth" id="birth">
+            <label>Address</label><input th:field="*{address}" class="controls" type="text" name="address" id="address">
+            <label>Phone Number</label><input th:field="*{phone_number}" class="controls" type="text" name="phoneNumber"
                                                         id="phoneNumber">
-            <label>Into your Biography</label><textarea class="controls"></textarea>
+            <label>Biography</label><textarea th:field="*{biography}" class="controls"></textarea>
             <input class="botons" type="submit" value="Register Developer">
+            </form>
         </div>
     </div>
 </div>
