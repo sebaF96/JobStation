@@ -5,7 +5,7 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import java.util.List;
 import java.util.Optional;
 
-public abstract class GenericServImpl<T extends Identificable> implements GenericService<T> {
+public abstract class GenericServiceImpl<T extends Identificable> implements GenericService<T> {
     @Override
     public boolean validate(Long value) {
         return getRepository().findById(value).isPresent();
@@ -14,10 +14,12 @@ public abstract class GenericServImpl<T extends Identificable> implements Generi
 
     @Override
     public T create(T entity) {
-        if (entity.getId() == null && !validate(entity.getId())) {
-            return getRepository().save(entity);
+        if (entity.getId() == null) {
+        return getRepository().save(entity);
+        }else{
+            return null;
         }
-        return null;
+
     }
 
     @Override
@@ -29,7 +31,7 @@ public abstract class GenericServImpl<T extends Identificable> implements Generi
 
     @Override
     public T update(T entity) {
-        if (validate(entity.getId())) {
+        if (entity.getId()!=null && validate(entity.getId())) {
             return getRepository().save(entity);
         }
         return null;

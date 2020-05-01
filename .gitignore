@@ -5,6 +5,7 @@ target/
 !**/src/test/**
 src/test
 src/main/resources/application.properties
+src/main/java/ar/edu/um/jobs/controller/test.java
 
 ### STS ###
 .apt_generated
@@ -20,6 +21,8 @@ src/main/resources/application.properties
 *.iws
 *.iml
 *.ipr
+
+
 
 ### NetBeans ###
 /nbproject/private/

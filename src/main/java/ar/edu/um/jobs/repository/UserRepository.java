@@ -7,6 +7,7 @@ import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Repository;
 
+<<<<<<< HEAD
 import java.util.Optional;
 
 @Repository
@@ -18,4 +19,9 @@ public interface UserRepository extends JpaRepository<User, Long> {
         return this.findByEmail(SecurityContextHolder.getContext().getAuthentication().getName());
     }
 
+=======
+
+@Repository
+public interface UserRepository extends JpaRepository<User, Long> {
+>>>>>>> develop
 }

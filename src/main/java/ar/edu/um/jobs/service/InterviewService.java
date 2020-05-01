@@ -2,12 +2,12 @@ package ar.edu.um.jobs.service;
 
 import ar.edu.um.jobs.model.Interview;
 import ar.edu.um.jobs.repository.InterviewRepository;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.stereotype.Service;
 
-public class InterviewService extends GenericServImpl<Interview> {
+@Service
+public class InterviewService extends GenericServiceImpl<Interview> {
 
-    @Autowired
     private final InterviewRepository interviewRepository;
 
     public InterviewService(InterviewRepository interviewRepository) {

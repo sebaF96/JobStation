@@ -2,11 +2,11 @@ package ar.edu.um.jobs.model;
 
 import ar.edu.um.jobs.service.Identificable;
 import lombok.*;
+import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.*;
 import java.io.Serializable;
 import java.time.LocalDate;
-import java.util.List;
 
 @Getter
 @Setter
@@ -18,10 +18,11 @@ import java.util.List;
 public class Developer extends User implements Serializable, Identificable {
 
     private String name;
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
     private LocalDate dob;
     private String address;
     private String biography;
-    private Integer phone_number;
+    private String phone_number;
 
     @Override
     public Long getId() {
