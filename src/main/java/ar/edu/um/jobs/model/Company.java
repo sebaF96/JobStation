@@ -11,7 +11,6 @@ import java.util.List;
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
-@ToString
 
 @Entity
 public class Company extends User implements Serializable, Identificable {
@@ -23,7 +22,8 @@ public class Company extends User implements Serializable, Identificable {
     private List<Job> jobs;
 
     @Override
-    public  Long getId() {
+    public Long getId() {
         return super.getUser_id();
     }
+
 }

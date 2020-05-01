@@ -11,7 +11,7 @@ import java.io.Serializable;
 @AllArgsConstructor
 @NoArgsConstructor
 @EqualsAndHashCode
-@ToString
+
 @Entity
 public class Application implements Serializable, Identificable {
 
@@ -32,4 +32,6 @@ public class Application implements Serializable, Identificable {
     public Long getId() {
         return this.application_id;
     }
+
+
 }
