@@ -1,17 +1,23 @@
 package ar.edu.um.jobs.service;
 
 import ar.edu.um.jobs.model.Application;
+import ar.edu.um.jobs.model.User;
 import ar.edu.um.jobs.repository.ApplicationRepository;
+import ar.edu.um.jobs.repository.UserRepository;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Service;
+
+import java.util.Optional;
 
 @Service
 public class ApplicationService extends GenericServiceImpl<Application> {
 
     private final ApplicationRepository applicationRepository;
+    private final UserRepository userRepository;
 
-    public ApplicationService(ApplicationRepository applicationRepository) {
+    public ApplicationService(ApplicationRepository applicationRepository, UserRepository userRepository) {
         this.applicationRepository = applicationRepository;
+        this.userRepository = userRepository;
     }
 
     @Override
@@ -28,5 +34,9 @@ public class ApplicationService extends GenericServiceImpl<Application> {
     @Override
     JpaRepository<Application, Long> getRepository() {
         return applicationRepository;
+    }
+
+    Optional<User> getCurrentUser() {
+        return userRepository.getCurrentUser();
     }
 }
