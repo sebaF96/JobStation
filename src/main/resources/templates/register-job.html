@@ -1,22 +1,42 @@
 <!DOCTYPE html>
-<html lang="en">
+<html xmlns:th="http://www.thymeleaf.org">
+
 <head>
     <meta charset="UTF-8">
     <title>Company Jobs</title>
-    <link rel="stylesheet" href="../static/css/style-developer.css">
+    <link rel="stylesheet" th:href="@{/css/style-developer.css}">
 </head>
 <body>
 <div class="row">
     <div class="col-md-12">
-        <div class="form-register">
-            <h4> Form Job Register </h4>
-            <label>Job Title</label><input class="controls" type="text" name="job-title" id="job-title" >
-            <label>Job Salary</label><input class="controls" type="text" name="job-salary" id="job-salary" >
-            <label>Job Type</label><input class="controls" type="text" name="job-type" id="job-type" >
-            <label>Available Slot</label><input class="controls" type="number" name="available-slot" id="available-slot">
-            <label>Job Description</label><textarea class="controls"></textarea>
-            <input class="botons" type="submit" value="Create Job">
-        </div>
+        <form method="post" th:action="@{/job/c/create}" th:object="${job}">
+            <div class="form-register">
+                <h4> Create job </h4>
+                <label>Job Title</label><input th:field="*{job_title}" class="controls" type="text" name="job-title"
+                                               id="job-title">
+                <label>Job Salary</label><input th:field="*{salary}" class="controls" type="text" name="job-salary"
+                                                id="job-salary">
+                <label>Available Slot</label>
+                <input th:field="*{available_slots}" class="controls" type="number" name="available-slot"
+                       id="available-slot">
+
+                <label>Job Type</label>
+                <select class="form-control form-control-lg" name="producto" th:field="*{job_type}">
+                    <option value="null" hidden>Select job type</option>
+                    <option th:each="jobtype : ${jobtypes}" th:value="${jobtype.name()}"
+                            th:text="${jobtype.toString()}"></option>
+                </select>
+                <br>
+                <br>
+
+                <label>Description</label><textarea th:field="*{description}" class="controls"></textarea>
+
+
+                <input class="botons" type="submit" value="Create Job">
+
+
+            </div>
+        </form>
     </div>
 </div>
 </body>

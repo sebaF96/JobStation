@@ -50,7 +50,7 @@ public class JobService extends GenericServiceImpl<Job> {
                 .collect(Collectors.toList());
     }
 
-    Optional<User> getCurrentUser() {
+    public Optional<User> getCurrentUser() {
         return userRepository.getCurrentUser();
     }
 
