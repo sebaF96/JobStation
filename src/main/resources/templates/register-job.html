@@ -9,7 +9,7 @@
 <body>
 <div class="row">
     <div class="col-md-12">
-        <form method="post" th:action="@{/job/c/create}" th:object="${job}">
+        <form method="post" th:action="@{${action}}" th:object="${job}">
             <div class="form-register">
                 <h4> Create job </h4>
                 <label>Job Title</label><input th:field="*{job_title}" class="controls" type="text" name="job-title"
@@ -32,7 +32,7 @@
                 <label>Description</label><textarea th:field="*{description}" class="controls"></textarea>
 
 
-                <input class="botons" type="submit" value="Create Job">
+                <button class="botons" type="submit" value="Create Job">Send</button>
 
 
             </div>

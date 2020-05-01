@@ -37,7 +37,7 @@ public class JobController {
     public String createJob(Model model) {
         model.addAttribute("job", new Job());
         model.addAttribute("jobtypes", JobType.values());
-
+        model.addAttribute("action","/job/c/create");
         return "register-job";
     }
 
@@ -49,6 +49,25 @@ public class JobController {
 
         return "register-job";
 
+    }
+
+    @GetMapping("/c/myjobs")
+    public String listJobs(Model model){
+        model.addAttribute("jobs",jobService.getMyJobs(jobService.getCurrentCompany().getId()));
+        return "company-jobs";
+    }
+    @GetMapping("/c/edit/{id}")
+    public String editGet(@PathVariable Long id,Model model){
+        model.addAttribute("jobtypes", JobType.values());
+        model.addAttribute("job",jobService.get(id).get());
+        model.addAttribute("action","/job/c/edit");
+        return "register-job";
+    }
+    @PostMapping("/c/edit")
+    public String editPost(Job job){
+        System.out.println(job);
+        jobService.update(job);
+        return "redirect:/job/c/myjobs";
     }
 
 }
