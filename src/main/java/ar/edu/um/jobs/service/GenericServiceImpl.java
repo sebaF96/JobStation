@@ -14,10 +14,12 @@ public abstract class GenericServiceImpl<T extends Identificable> implements Gen
 
     @Override
     public T create(T entity) {
-        if (entity.getId() == null && !validate(entity.getId())) {
-            return getRepository().save(entity);
+        if (entity.getId() == null) {
+        return getRepository().save(entity);
+        }else{
+            return null;
         }
-        return null;
+
     }
 
     @Override
@@ -29,7 +31,7 @@ public abstract class GenericServiceImpl<T extends Identificable> implements Gen
 
     @Override
     public T update(T entity) {
-        if (validate(entity.getId())) {
+        if (entity.getId()!=null && validate(entity.getId())) {
             return getRepository().save(entity);
         }
         return null;
