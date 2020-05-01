@@ -1,9 +1,7 @@
 package ar.edu.um.jobs.controller;
 
-import ar.edu.um.jobs.model.Company;
 import ar.edu.um.jobs.model.Job;
 import ar.edu.um.jobs.model.JobType;
-import ar.edu.um.jobs.service.CompanyService;
 import ar.edu.um.jobs.service.JobService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -21,11 +19,9 @@ public class JobController {
 
 
     private final JobService jobService;
-    private final CompanyService companyService;
 
-    public JobController(JobService jobService, CompanyService companyService) {
+    public JobController(JobService jobService) {
         this.jobService = jobService;
-        this.companyService = companyService;
     }
 
 
@@ -48,9 +44,7 @@ public class JobController {
     @PostMapping("/c/create")
     public String createJobPost(@Valid Job job) {
 
-        Long id = jobService.getCurrentUser().get().getUser_id();
-
-        job.setCompany((Company) companyService.get(id).get());
+        job.setCompany(jobService.getCurrentCompany());
         jobService.create(job);
 
         return "register-job";

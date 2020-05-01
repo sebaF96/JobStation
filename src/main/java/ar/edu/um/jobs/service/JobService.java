@@ -1,8 +1,8 @@
 package ar.edu.um.jobs.service;
 
 import ar.edu.um.jobs.model.Application;
+import ar.edu.um.jobs.model.Company;
 import ar.edu.um.jobs.model.Job;
-import ar.edu.um.jobs.model.User;
 import ar.edu.um.jobs.repository.ApplicationRepository;
 import ar.edu.um.jobs.repository.JobRepository;
 import ar.edu.um.jobs.repository.UserRepository;
@@ -11,7 +11,6 @@ import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Optional;
 import java.util.stream.Collectors;
 
 @Service
@@ -50,8 +49,8 @@ public class JobService extends GenericServiceImpl<Job> {
                 .collect(Collectors.toList());
     }
 
-    public Optional<User> getCurrentUser() {
-        return userRepository.getCurrentUser();
+    public Company getCurrentCompany() {
+        return (Company) userRepository.findById(userRepository.getCurrentUser().get().getId()).get();
     }
 
 
