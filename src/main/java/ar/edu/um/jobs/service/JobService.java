@@ -53,9 +53,21 @@ public class JobService extends GenericServiceImpl<Job> {
         return (Company) userRepository.findById(userRepository.getCurrentUser().get().getId()).get();
     }
 
-    public List<Job> getMyJobs(Long companyId){
+    public List<Job> getMyJobs(Long companyId) {
         return this.getAll().stream()
                 .filter(j -> j.getCompany().getId().equals(companyId))
                 .collect(Collectors.toList());
+    }
+
+    public void update(Job updated_job, Long id) {
+        Job job = this.get(id).get();
+
+        job.setJob_title(updated_job.getJob_title());
+        job.setSalary(updated_job.getSalary());
+        job.setAvailable_slots(updated_job.getAvailable_slots());
+        job.setDescription(updated_job.getDescription());
+        job.setJob_type(updated_job.getJob_type());
+
+        jobRepository.save(job);
     }
 }

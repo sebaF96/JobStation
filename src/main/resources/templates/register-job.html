@@ -11,14 +11,14 @@
     <div class="col-md-12">
         <form method="post" th:action="@{${action}}" th:object="${job}">
             <div class="form-register">
-                <h4> Create job </h4>
+                <h4 th:text="${title}"> Create job </h4>
                 <label>Job Title</label><input th:field="*{job_title}" class="controls" type="text" name="job-title"
                                                id="job-title">
                 <label>Job Salary</label><input th:field="*{salary}" class="controls" type="text" name="job-salary"
                                                 id="job-salary">
                 <label>Available Slot</label>
                 <input th:field="*{available_slots}" class="controls" type="number" name="available-slot"
-                       id="available-slot">
+                       id="available-slot" min="0">
 
                 <label>Job Type</label>
                 <select class="form-control form-control-lg" th:field="*{job_type}">
@@ -32,7 +32,7 @@
                 <label>Description</label><textarea th:field="*{description}" class="controls"></textarea>
 
 
-                <button class="botons" type="submit" value="Create Job">Send</button>
+                <button class="botons" type="submit" th:text="${title}"></button>
 
 
             </div>
