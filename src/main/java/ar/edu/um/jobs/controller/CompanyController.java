@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 import javax.validation.Valid;
 
-@RequestMapping("/company")
+@RequestMapping("/comp")
 @Controller
 public class CompanyController {
     @Autowired
@@ -29,6 +29,7 @@ public class CompanyController {
 
     @PostMapping(value = "/register")
     public String registerPost(@Valid Company company,Model model){
+        company.setRoles("ROLE_COMPANY");
         companyService.create(company);
         return "register-company";
     }
