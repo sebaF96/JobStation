@@ -1,63 +1,30 @@
 package ar.edu.um.jobs.controller;
 
 
-import ar.edu.um.jobs.model.Developer;
-import ar.edu.um.jobs.model.User;
-import ar.edu.um.jobs.repository.UserRepository;
-import org.springframework.beans.factory.annotation.Autowired;
+import ar.edu.um.jobs.model.Job;
+import ar.edu.um.jobs.service.JobService;
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RestController;
 
-import java.util.Optional;
+import java.util.List;
 
-@RestController
+@Controller
 public class HomeController {
 
-    @Autowired
-    private final UserRepository userRepository;
+    private final JobService jobService;
 
-    public HomeController(UserRepository userRepository) {
-        this.userRepository = userRepository;
+    public HomeController(JobService jobService) {
+        this.jobService = jobService;
     }
 
-    @GetMapping("/")
-    public String home() {
-        Optional<User> currentUser = userRepository.getCurrentUser();
+    @GetMapping({"/", ""})
+    public String home(Model model) {
 
-        String msg = currentUser.map(usr -> "<h1> Welcome " + usr.getId() + "</h1>")
-                .orElse("<h1> Welcome deslogueado </h1>");
+        List<Job> availableJobs = jobService.getAvailableJobs();
 
-        return msg;
-    }
-
-    @GetMapping("/user")
-    public String user() {
-        Optional<User> currentUser = userRepository.getCurrentUser();
-
-        if (currentUser.get().getClass() == Developer.class) {
-            return "Welcome developer!! " + currentUser.get().getRoles();
-        } else {
-            return "Welcome company!! " + currentUser.get().getRoles();
-
-        }
-
-
-    }
-
-    @GetMapping("/company/2")
-    public String com2() {
-        return ("<h1>Welcome COMPANY 2</h1>");
-    }
-
-
-    @GetMapping("/developer")
-    public String dev() {
-        return ("<h1>Welcome Developer</h1>");
-    }
-
-    @GetMapping("/company")
-    public String company() {
-        return ("<h1>Pagina que solo deberian ver las company</h1>");
+        model.addAttribute("jobs", availableJobs);
+        return "index";
     }
 }
 

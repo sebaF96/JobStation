@@ -19,8 +19,15 @@ public class JobController {
         this.jobService = jobService;
     }
 
-    @GetMapping("/get/{id}")
+
+    @GetMapping("/c/create")
     public String getJob(@PathVariable Long id, Model model) {
+        System.out.println(jobService.get(id));
+        return "probe";
+    }
+
+    @GetMapping("/d/create")
+    public String getJobe(@PathVariable Long id, Model model) {
         System.out.println(jobService.get(id));
         return "probe";
     }

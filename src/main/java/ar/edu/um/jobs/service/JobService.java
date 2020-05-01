@@ -43,6 +43,13 @@ public class JobService extends GenericServiceImpl<Job> {
 
     }
 
+    public List<Job> getAvailableJobs() {
+        return this.getAll()
+                .stream()
+                .filter(j -> j.getAvailable_slots() >= 1)
+                .collect(Collectors.toList());
+    }
+
     Optional<User> getCurrentUser() {
         return userRepository.getCurrentUser();
     }
