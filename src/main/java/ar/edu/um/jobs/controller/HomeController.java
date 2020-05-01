@@ -24,7 +24,7 @@ public class HomeController {
     public String home() {
         Optional<User> currentUser = userRepository.getCurrentUser();
 
-        String msg = currentUser.map(usr -> "<h1> Welcome " + usr.getEmail() + "</h1>")
+        String msg = currentUser.map(usr -> "<h1> Welcome " + usr.getId() + "</h1>")
                 .orElse("<h1> Welcome deslogueado </h1>");
 
         return msg;

@@ -20,13 +20,16 @@ public class DeveloperController {
     public DeveloperController(DeveloperService developerService) {
         this.developerService = developerService;
     }
+
     @GetMapping(value = "/register")
-    public String registerDevGet(Model model){
-        model.addAttribute("developer",new Developer());
+    public String registerDevGet(Model model) {
+        model.addAttribute("developer", new Developer());
         return "register-developer";
     }
+
     @PostMapping(value = "/register")
-    public String registerPost(@Valid Developer developer){
+    public String registerPost(@Valid Developer developer) {
+        developer.setRoles("ROLE_DEVELOPER");
         developerService.create(developer);
         return "register-developer";
     }
