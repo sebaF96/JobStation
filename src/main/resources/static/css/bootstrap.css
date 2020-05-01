@@ -2918,14 +2918,14 @@ fieldset:disabled a.btn {
 }
 
 .btn-outline-success {
-  color: #28a745;
-  border-color: #28a745;
+  color: #fff;
+  border-color: #1f53c5;
 }
 
 .btn-outline-success:hover {
   color: #fff;
-  background-color: #28a745;
-  border-color: #28a745;
+  background-color: #1f53c5;
+  border-color: #1f53c5;
 }
 
 .btn-outline-success:focus, .btn-outline-success.focus {
@@ -2933,7 +2933,7 @@ fieldset:disabled a.btn {
 }
 
 .btn-outline-success.disabled, .btn-outline-success:disabled {
-  color: #28a745;
+  color: #1f53c5;
   background-color: transparent;
 }
 
