@@ -20,7 +20,8 @@ public class CompanyService extends GenericServiceImpl<User> {
     private final UserRepository companyRepository;
     private final ApplicationRepository applicationRepository;
     private final JobRepository jobRepository;
-    private final InterviewRepository interviewRepository;
+    private  final InterviewRepository interviewRepository;
+
 
     public CompanyService(UserRepository companyRepository, ApplicationRepository applicationRepository, JobRepository jobRepository, InterviewRepository interviewRepository) {
         this.companyRepository = companyRepository;
@@ -34,42 +35,41 @@ public class CompanyService extends GenericServiceImpl<User> {
         return companyRepository;
     }
 
-    public List<Job> listJobs(Long companyId) {
-        List<Job> jobs = new ArrayList<>();
+    public List<Job> listJobs() {
+        Long companyId = companyRepository.getCurrentUser().get().getId();
+        List<Job> jobs = jobRepository.findByCompany((Company) this.get(companyId).get());
 
-        if (this.get(companyId).isPresent()) {
-            jobs = jobRepository.findByCompany((Company) this.get(companyId).get());
-        }
+
         return jobs;
     }
 
-    public List<Application> listApplications(Long companyId) {
-        List<Application> applications = new ArrayList<>();
+    public List<Application> listApplicationsbyCompany() {
+        List<Application> applications;
+        Long companyId = companyRepository.getCurrentUser().get().getId();
 
-        if (this.get(companyId).isPresent()) {
-            applications = applicationRepository.findAll()
-                    .stream()
-                    .filter(a -> a.getJob().getCompany().getId().equals(companyId))
-                    .collect(Collectors.toList());
+        applications = applicationRepository.findAll()
+                .stream()
+                .filter(a -> a.getJob().getCompany().getId().equals(companyId))
+                .collect(Collectors.toList());
 
-        }
+
         return applications.stream().sorted((x, y) -> y.getPriority().compareTo(x.getPriority())).collect(Collectors.toList());
     }
 
+    public List<Interview> listInterviews() {
+        Long companyId = companyRepository.getCurrentUser().get().getId();
 
-    public List<Interview> listInterviews(Long companyId) {
-        List<Interview> interviews = new ArrayList<>();
 
-        if (this.get(companyId).isPresent()) {
-            interviews = interviewRepository.findAll()
-                    .stream()
-                    .filter(interview -> interview.getApplication().getJob().getCompany().getId().equals(companyId))
-                    .filter(interview -> interview.getDate().isAfter(LocalDateTime.now()))
-                    .sorted(Comparator.comparing(Interview::getDate))
-                    .collect(Collectors.toList());
-        }
-        return interviews;
+        return interviewRepository.findAll()
+                 .stream()
+                 .filter(interview -> interview.getApplication().getJob().getCompany().getId().equals(companyId))
+                 .filter(interview -> interview.getDate().isAfter(LocalDateTime.now()))
+                 .sorted(Comparator.comparing(Interview::getDate))
+                 .collect(Collectors.toList());
+
+
     }
+
 
 
 }

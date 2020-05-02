@@ -33,4 +33,18 @@ public class DeveloperController {
         developerService.create(developer);
         return "register-developer";
     }
+
+    @GetMapping("/myinterviews")
+    public String devInterviews(Model model) {
+        model.addAttribute("interviews", developerService.listInterviews());
+
+        return "vista"; /*lista para listar mis interviews*/
+    }
+    @GetMapping("/myapplications")
+    public String devApplications(Model model){
+        model.addAttribute("applications",developerService.listApplications());
+        model.addAttribute("action","/dev/myapplications");
+        return "table-applications"; /* vista para listar mis apps*/
+    }
 }
+
