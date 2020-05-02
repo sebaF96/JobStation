@@ -33,4 +33,14 @@ public class CompanyController {
         companyService.create(company);
         return "register-company";
     }
+    @GetMapping("/myapplications")
+    public String companyApplications(Model model){
+        model.addAttribute("applications",companyService.listApplicationsbyCompany());
+        return "vistaaplications de la company";
+    }
+    @GetMapping("/myinterviews")
+    public String companyInterviews(Model model){
+        model.addAttribute("interviews",companyService.listInterviews());
+        return "vistainterviews de la company";
+    }
 }

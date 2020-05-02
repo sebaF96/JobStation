@@ -7,19 +7,23 @@
 </head>
 <body>
 <div class="main-container">
-    <div class="row">
+    <div class="row" th:object="interviews">
+
+
         <div class="col-md-12">
             <table>
                 <thead>
-                <h4> Your Interviews </h4>
-                <tr>
+               Interviews of <h4 th:field>  </h4>
+                <tr >
                     <th>Date Interview</th>
                     <th>Description</th>
                 </tr>
                 </thead>
-                <tr>
-                    <td>03/05/20</td>
-                    <td>kjvfgfdjv</td>
+                <td th:each="interview:${interviews}">
+                    <td th:text="${interview.date}" >03/05/20</td>
+                    <td th:text="${interview.application.job.job_title}">kjvfgfdjv</td>
+                    <td th:text="${interview.application.job.company.name}"></td>
+                    <td th:text="${interview.description}"></td>
                     <td><a href="#" class="btn btn-primary">View Interview</a></td>
                 </tr>
             </table>
