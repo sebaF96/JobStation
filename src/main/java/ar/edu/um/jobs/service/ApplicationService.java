@@ -53,6 +53,7 @@ public class ApplicationService extends GenericServiceImpl<Application> {
         return applicationRepository.findAll()
                 .stream()
                 .filter(a -> a.getJob().getJob_id().equals(id))
+                .sorted((x, y) -> y.getPriority().compareTo(x.getPriority()))
                 .collect(Collectors.toList());
     }
 }

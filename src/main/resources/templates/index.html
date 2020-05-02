@@ -1,27 +1,26 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
-<head>
-    <meta charset="UTF-8">
-    <title>Index</title>
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
-          integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
-</head>
+<div th:replace="header.html::head"></div>
 
 <body>
-
-<h1 class="title"> JobStation </h1>
-<br>
+<div th:replace="header.html::header"></div>
 <div class="container">
+
+
+    <h1 class="title"> JobStation </h1>
     <div class="row">
         <div th:each="job : ${jobs}">
             <div class="col-md-3">
                 <div class="card bg-primary text-white" style="width: 18rem;">
                     <div class="card-body">
                         <h5 class="card-title text-black-50 text-center" th:text="${job.job_title}">Title</h5>
-                        <p class="card-text text-black-50" th:text="'Description: ' + ${job.description}">Description</p>
+                        <p class="card-text text-black-50" th:text="'Description: ' + ${job.description}">
+                            Description</p>
                     </div>
                     <ul class="list-group list-group-flush">
-                        <li class="list-group-item text-black-50" th:text="'Company: ' + ${job.company.name}">Company name</li>
+                        <li class="list-group-item text-black-50" th:text="'Company: ' + ${job.company.name}">Company
+                            name
+                        </li>
                         <li class="list-group-item text-black-50" th:text="'Job Type: ' + ${job.job_type}">Job Type</li>
                         <li class="list-group-item text-black-50" th:text="'Slots: ' + ${job.available_slots}">Slot</li>
                     </ul>

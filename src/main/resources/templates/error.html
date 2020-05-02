@@ -1,11 +1,8 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
-<head>
-    <title>Error page</title>
-    <meta charset="utf-8" />
-    <link rel="stylesheet" href="css/main.css" th:href="@{/css/main.css}" />
-</head>
+<div th:replace="header.html::head"></div>
 <body th:with="httpStatus=${T(org.springframework.http.HttpStatus).valueOf(#response.status)}">
+<div th:replace="header.html::header" ></div>
 <h1 th:text="|${httpStatus} - ${httpStatus.reasonPhrase}|">404</h1>
 
 <!--/*@thymesVar id="errorMessage" type="java.lang.Object"*/-->
