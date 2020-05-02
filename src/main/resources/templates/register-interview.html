@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" href="../static/css/style-developer.css" th:href="@{/css/style-developer.css}">
+</head>
+<body>
+<div class="row">
+    <div class="col-md-12">
+        <form method="post" th:action="@{${action}}" th:object="${application}">
+            <div class="form-register">
+                <h4> Form Interview Register </h4>
+
+                <label>Interview Date</label><input pattern="yyyy-MM-dd" th:field="*{dob}"class="controls" type="date" name="birth" id="birth">
+                <label>Description</label><textarea th:field="*{biography}" class="controls"></textarea>
+                <input class="botons" type="submit" value="Apply to Work">
+            </div>
+        </form>
+    </div>
+</div>
+</body>
+</html>
