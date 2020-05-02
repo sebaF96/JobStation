@@ -20,7 +20,7 @@
                     <li class="list-group-item  text-center" th:text="'Phone Number: '+${app.developer.phone_number}"></li>
                     <li class="list-group-item  text-center" th:text="'Seniority: '+${app.seniority}"></li>
                     <li class="list-group-item  text-center" th:text="'Years of Experience: '+${app.years_xp}"></li>
-                    <li class="list-group-item  text-center" th:text="'Speak English: '+${app.speaks_english}"></li>
+                    <li class="list-group-item  text-center" th:text="${app.speaks_english} ? 'YES': 'NO'">YES></li>
                     <li class="list-group-item  text-center" th:text="'Biography: '+${app.developer.biography}"></li>
                 </ul>
                 <div class="card-body">

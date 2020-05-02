@@ -3,25 +3,29 @@
 <head>
     <meta charset="UTF-8">
     <title>My Applications</title>
-    <link rel="stylesheet" href="../static/css/tables.css">
+    <link rel="stylesheet" th:href="@{/css/tables.css}">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+          integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
 </head>
 <body>
 <div class="main-container">
     <div class="row">
         <div class="col-md-12">
-            <table>
+            <h1 th:text="'Applications of ' + ${name}" style="text-align: center"></h1>
+
+            <table style="color: white">
                 <thead>
-                <h4> Your Applications </h4>
                 <tr>
                     <th>Job Name</th>
                     <th>Company Name</th>
                     <th>Seniority</th>
                 </tr>
                 </thead>
-                <tr>
-                    <td>Python Engineer</td>
-                    <td>Bugisoft</td>
-                    <td>Junior</td>
+
+                <tr th:each="app : ${applications}">
+                    <td th:text="${app.job.job_title}">Python Engineer</td>
+                    <td th:text="${app.job.company.name}">Bugisoft</td>
+                    <td th:text="${app.seniority}">Junior</td>
                     <td><a href="#" class="btn btn-primary">View Application</a></td>
                 </tr>
             </table>

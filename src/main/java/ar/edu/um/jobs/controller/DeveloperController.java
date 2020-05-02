@@ -45,8 +45,9 @@ public class DeveloperController {
     @GetMapping("/myapplications")
     public String devApplications(Model model) {
         model.addAttribute("applications", developerService.listApplications());
-        model.addAttribute("action", "/dev/myapplications");
-        return "table-applications"; /* vista para listar mis apps*/
+        model.addAttribute("name", developerService.getCurrentDeveloper().getName());
+
+        return "developer-applications";
     }
 }
 
