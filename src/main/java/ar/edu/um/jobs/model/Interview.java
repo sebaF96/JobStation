@@ -3,10 +3,13 @@ package ar.edu.um.jobs.model;
 
 import ar.edu.um.jobs.service.Identificable;
 import lombok.*;
+import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.*;
 import java.io.Serializable;
+import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.time.LocalTime;
 
 @Getter
 @Setter
@@ -23,7 +26,9 @@ public class Interview implements Identificable, Serializable {
     private Long interview_id;
     @OneToOne
     private Application application;
-    private LocalDateTime date;
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
+    private LocalDate date;
+    private LocalTime time;
     @OneToOne
     private Developer developer;
     private String description;

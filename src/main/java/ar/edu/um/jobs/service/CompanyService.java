@@ -8,6 +8,7 @@ import ar.edu.um.jobs.repository.UserRepository;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.Comparator;
@@ -62,7 +63,7 @@ public class CompanyService extends GenericServiceImpl<User> {
         return interviewRepository.findAll()
                  .stream()
                  .filter(interview -> interview.getApplication().getJob().getCompany().getId().equals(companyId))
-                 .filter(interview -> interview.getDate().isAfter(LocalDateTime.now()))
+                 .filter(interview -> interview.getDate().isAfter(LocalDate.now()))
                  .sorted(Comparator.comparing(Interview::getDate))
                  .collect(Collectors.toList());
 

@@ -24,8 +24,10 @@ public class InterviewController {
     public String createInterview(@PathVariable Long id, Model model){
         Interview interview = new Interview();
         model.addAttribute("interview",interview);
+        model.addAttribute("action","/interview/c/create/"+id);
 
-        return "/ruta";
+
+        return "register-interview";
     }
     @PostMapping("/c/create/{id}")
     public String postCreateInterview(@PathVariable Long id, @Valid Interview interview){
@@ -33,7 +35,7 @@ public class InterviewController {
         interview.setDeveloper(interviewService.getApplicationById(id).getDeveloper());
         System.out.println(interview);
         interviewService.create(interview);
-        return "/ vista";
+        return "redirect:/";
 
     }
  

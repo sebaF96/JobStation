@@ -8,13 +8,13 @@
 <body>
 <div class="row">
     <div class="col-md-12">
-        <form method="post" th:action="@{${action}}" th:object="${application}">
+        <form method="post" th:action="@{${action}}" th:object="${interview}">
             <div class="form-register">
                 <h4> Form Interview Register </h4>
 
-                <label>Interview Date</label><input pattern="yyyy-MM-dd" th:field="*{dob}" class="controls" type="date"
-                                                    name="date" id="date">
-                <label>Description</label><textarea th:field="*{biography}" class="controls"></textarea>
+                <label>Interview Date</label> <input type="date" th:value="*{date}" th:field="*{date}" />
+                <label>Interview Time</label><input type="time" th:value="*{time}" th:field="*{time}" />
+                <label>Description</label><textarea th:field="*{description}" class="controls"></textarea>
                 <input class="botons" type="submit" value="Apply to Work">
             </div>
         </form>

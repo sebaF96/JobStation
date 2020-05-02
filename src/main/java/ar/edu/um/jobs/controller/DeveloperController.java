@@ -38,7 +38,7 @@ public class DeveloperController {
     public String devInterviews(Model model) {
         model.addAttribute("interviews", developerService.listInterviews());
 
-        return "vista"; /*lista para listar mis interviews*/
+        return "developer-interviews";
     }
     @GetMapping("/myapplications")
     public String devApplications(Model model){
