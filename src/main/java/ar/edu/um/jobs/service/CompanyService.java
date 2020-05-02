@@ -37,10 +37,9 @@ public class CompanyService extends GenericServiceImpl<User> {
 
     public List<Job> listJobs() {
         Long companyId = companyRepository.getCurrentUser().get().getId();
-        List<Job> jobs = jobRepository.findByCompany((Company) this.get(companyId).get());
 
 
-        return jobs;
+        return jobRepository.findByCompany((Company) this.get(companyId).get());
     }
 
     public List<Application> listApplicationsbyCompany() {
