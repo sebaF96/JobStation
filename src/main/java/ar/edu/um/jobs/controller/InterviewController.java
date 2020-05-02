@@ -36,10 +36,7 @@ public class InterviewController {
         return "/ vista";
 
     }
-    @GetMapping("/c/futureInterviews")
-    public String getInterview(){
-
-    }
+ 
 
 
 

@@ -33,7 +33,7 @@ public class InterviewService extends GenericServiceImpl<Interview> {
         return applicationRepository.findById(id).get();
     }
 
- 
+
 
 
 
