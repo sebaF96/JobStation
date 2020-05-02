@@ -14,19 +14,22 @@
 <div class="container">
     <div class="row">
         <div th:each="job : ${jobs}">
-            <div class="card" style="width: 18rem;">
-                <div class="card-body">
-                    <h5 class="card-title" th:text="${job.job_title}">Title</h5>
-                    <p class="card-text" th:text="'Description: ' + ${job.description}">Description</p>
+            <div class="col-md-3">
+                <div class="card bg-primary text-white" style="width: 18rem;">
+                    <div class="card-body">
+                        <h5 class="card-title text-black-50 text-center" th:text="${job.job_title}">Title</h5>
+                        <p class="card-text text-black-50" th:text="'Description: ' + ${job.description}">Description</p>
+                    </div>
+                    <ul class="list-group list-group-flush">
+                        <li class="list-group-item text-black-50" th:text="'Company: ' + ${job.company.name}">Company name</li>
+                        <li class="list-group-item text-black-50" th:text="'Job Type: ' + ${job.job_type}">Job Type</li>
+                        <li class="list-group-item text-black-50" th:text="'Slots: ' + ${job.available_slots}">Slot</li>
+                    </ul>
+                    <div class="card-body">
+                        <a href="#" class="card-link text-black-50">See More</a>
+                    </div>
                 </div>
-                <ul class="list-group list-group-flush">
-                    <li class="list-group-item" th:text="'Company: ' + ${job.company.name}">Company name</li>
-                    <li class="list-group-item" th:text="'Job Type: ' + ${job.job_type}">Job Type</li>
-                    <li class="list-group-item" th:text="'Slots: ' + ${job.available_slots}">Slot</li>
-                </ul>
-                <div class="card-body">
-                    <a href="#" class="card-link">See More</a>
-                </div>
+                <br>
             </div>
         </div>
     </div>
