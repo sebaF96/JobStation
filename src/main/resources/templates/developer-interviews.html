@@ -3,24 +3,26 @@
 <head>
     <meta charset="UTF-8">
     <title>My Interviews</title>
-    <link rel="stylesheet" href="../static/css/tables.css">
+    <link rel="stylesheet" th:href="@{/css/tables.css}">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+          integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
 </head>
 <body>
 <div class="main-container">
-    <div class="row" th:object="interviews">
+    <div class="row" th:object="${interviews}">
 
 
         <div class="col-md-12">
-            <table>
+            <table style="color: white">
                 <thead>
-               Interviews of <h4 th:field>  </h4>
-                <tr >
+                <h1 th:text="'Interviews of ' + ${name}" style="text-align: center"></h1>
+                <tr>
                     <th>Date Interview</th>
                     <th>Description</th>
                 </tr>
                 </thead>
-                <td th:each="interview:${interviews}">
-                    <td th:text="${interview.date}" >03/05/20</td>
+                <tr th:each="interview : ${interviews}">
+                    <td th:text="${interview.date}">03/05/20</td>
                     <td th:text="${interview.application.job.job_title}">kjvfgfdjv</td>
                     <td th:text="${interview.application.job.company.name}"></td>
                     <td th:text="${interview.description}"></td>

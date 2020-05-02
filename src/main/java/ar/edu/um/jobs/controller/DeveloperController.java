@@ -37,13 +37,15 @@ public class DeveloperController {
     @GetMapping("/myinterviews")
     public String devInterviews(Model model) {
         model.addAttribute("interviews", developerService.listInterviews());
+        model.addAttribute("name", developerService.getCurrentDeveloper().getName());
 
         return "developer-interviews";
     }
+
     @GetMapping("/myapplications")
-    public String devApplications(Model model){
-        model.addAttribute("applications",developerService.listApplications());
-        model.addAttribute("action","/dev/myapplications");
+    public String devApplications(Model model) {
+        model.addAttribute("applications", developerService.listApplications());
+        model.addAttribute("action", "/dev/myapplications");
         return "table-applications"; /* vista para listar mis apps*/
     }
 }

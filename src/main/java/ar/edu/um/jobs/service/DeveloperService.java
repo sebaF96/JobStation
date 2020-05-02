@@ -48,4 +48,8 @@ public class DeveloperService extends GenericServiceImpl<User> {
         return applicationRepository.findByDeveloper(this.get(developerId).get());
 
     }
+
+    public Developer getCurrentDeveloper() {
+        return (Developer) developerRepository.getCurrentUser().get();
+    }
 }
