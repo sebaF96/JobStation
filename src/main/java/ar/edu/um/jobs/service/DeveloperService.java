@@ -1,6 +1,7 @@
 package ar.edu.um.jobs.service;
 
 import ar.edu.um.jobs.model.Application;
+import ar.edu.um.jobs.model.Developer;
 import ar.edu.um.jobs.model.Interview;
 import ar.edu.um.jobs.model.User;
 import ar.edu.um.jobs.repository.ApplicationRepository;
@@ -19,10 +20,11 @@ public class DeveloperService extends GenericServiceImpl<User> {
     private final InterviewRepository interviewRepository;
     private final ApplicationRepository applicationRepository;
 
-    public DeveloperService(UserRepository developerRepository, InterviewRepository interviewRepository, ApplicationRepository applicationRepository) {
+    public DeveloperService(UserRepository developerRepository, InterviewRepository interviewRepository, ApplicationRepository applicationRepository, UserRepository userRepository) {
         this.developerRepository = developerRepository;
         this.interviewRepository = interviewRepository;
         this.applicationRepository = applicationRepository;
+
     }
 
     @Override
@@ -30,21 +32,24 @@ public class DeveloperService extends GenericServiceImpl<User> {
         return developerRepository;
     }
 
-    public List<Interview> listInterviews(Long developerId) {
-        List<Interview> interviews = new ArrayList<>();
+    public List<Interview> listInterviews() {
 
-        if (this.get(developerId).isPresent()) {
-            interviews = interviewRepository.findByDeveloper(this.get(developerId).get());
-        }
-        return interviews;
+        Long developerId = developerRepository.getCurrentUser().get().getId();
+
+        return interviewRepository.findByDeveloper(this.get(developerId).get());
+
     }
 
 
-    public List<Application> listApplications(Long developerId) {
-        List<Application> applications = new ArrayList<>();
-        if (this.get(developerId).isPresent()) {
-            applications = applicationRepository.findByDeveloper(this.get(developerId).get());
-        }
-        return applications;
+    public List<Application> listApplications() {
+
+        Long developerId = developerRepository.getCurrentUser().get().getId();
+
+        return applicationRepository.findByDeveloper(this.get(developerId).get());
+
+    }
+
+    public Developer getCurrentDeveloper() {
+        return (Developer) developerRepository.getCurrentUser().get();
     }
 }

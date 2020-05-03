@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<div th:replace="header.html::head"></div>
+<body>
+<div th:replace="header.html::header" ></div>
+<div class="row">
+    <div class="col-md-12">
+        <form method="post" th:action="@{${action}}" th:object="${interview}">
+            <div class="form-register">
+                <h4> Form Interview Register </h4>
+
+                <label>Interview Date</label> <input type="date" th:value="*{date}" th:field="*{date}" />
+                <label>Interview Time</label><input type="time" th:value="*{time}" th:field="*{time}" />
+                <label>Description</label><textarea th:field="*{description}" class="controls"></textarea>
+                <input class="botons" type="submit" value="Apply to Work">
+            </div>
+        </form>
+    </div>
+</div>
+</body>
+</html>

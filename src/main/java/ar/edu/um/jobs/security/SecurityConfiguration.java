@@ -26,12 +26,17 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         http.authorizeRequests()
+                .antMatchers("/comp/register").permitAll()
+                .antMatchers("/dev/register").permitAll()
                 .antMatchers("/job/c/**").hasRole("COMPANY")
+                .antMatchers("/dev/**").hasRole("DEVELOPER")
+                .antMatchers("/comp/**").hasRole("COMPANY")
                 .antMatchers("/application/d/**").hasRole("DEVELOPER")
                 .antMatchers("/application/c/**").hasRole("COMPANY")
                 .antMatchers("/user").hasAnyRole("COMPANY", "DEVELOPER")
                 .antMatchers("/").permitAll()
-                .and().formLogin();
+                .and().formLogin()
+                .and().logout().logoutSuccessUrl("/");
     }
 
     @Bean

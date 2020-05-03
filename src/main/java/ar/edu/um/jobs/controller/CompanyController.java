@@ -22,15 +22,27 @@ public class CompanyController {
     }
 
     @GetMapping(value = "/register")
-    public String registerGet(Model model){
-        model.addAttribute("company",new Company());
+    public String registerGet(Model model) {
+        model.addAttribute("company", new Company());
         return "register-company";
     }
 
     @PostMapping(value = "/register")
-    public String registerPost(@Valid Company company,Model model){
+    public String registerPost(@Valid Company company, Model model) {
         company.setRoles("ROLE_COMPANY");
         companyService.create(company);
         return "register-company";
+    }
+
+    @GetMapping("/myapplications")
+    public String companyApplications(Model model) {
+        model.addAttribute("applications", companyService.listApplicationsbyCompany());
+        return "vistaaplications de la company";
+    }
+
+    @GetMapping("/myinterviews")
+    public String companyInterviews(Model model) {
+        model.addAttribute("interviews", companyService.listInterviews());
+        return "vistainterviews de la company";
     }
 }

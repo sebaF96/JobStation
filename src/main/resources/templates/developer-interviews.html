@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<div th:replace="header.html::head"></div>
+<body>
+<div th:replace="header.html::header"></div>
+<div class="main-container">
+
+    <div class="row" th:object="${interviews}">
+
+
+        <div class="col-md-12">
+            <h1 th:text="'Interviews of ' + ${name}" style="text-align: center"></h1>
+            <table style="color: white">
+                <thead>
+                <tr>
+                    <th>Date Interview</th>
+                    <th>Description</th>
+                </tr>
+                </thead>
+                <tr th:each="interview : ${interviews}">
+                    <td th:text="${interview.date}">03/05/20</td>
+                    <td th:text="${interview.application.job.job_title}">kjvfgfdjv</td>
+                    <td th:text="${interview.application.job.company.name}"></td>
+                    <td th:text="${interview.description}"></td>
+                    <td><a href="#" class="btn btn-primary">View Interview</a></td>
+                </tr>
+            </table>
+        </div>
+    </div>
+</div>
+</body>
+</html>

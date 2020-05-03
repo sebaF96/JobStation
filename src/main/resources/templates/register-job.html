@@ -1,12 +1,9 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 
-<head>
-    <meta charset="UTF-8">
-    <title>Company Jobs</title>
-    <link rel="stylesheet" th:href="@{/css/style-developer.css}">
-</head>
+<div th:replace="header.html::head"></div>
 <body>
+<div th:replace="header.html::header" ></div>
 <div class="row">
     <div class="col-md-12">
         <form method="post" th:action="@{${action}}" th:object="${job}">
