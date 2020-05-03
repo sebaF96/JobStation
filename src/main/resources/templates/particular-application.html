@@ -10,14 +10,14 @@
                 <h1 class="card-title text-center" style="margin-top: 70px;">Developer Information</h1>
                 <ul class="list-group list-group-flush  text-center"
                     style="font-family: 'DejaVu Sans Mono', monospace;">
-                    <li class="list-group-item  text-center" th:text="'Full Name: '+${app.developer.name}"></li>
-                    <li class="list-group-item  text-center" th:text="'E-mail: '+${app.developer.email}"></li>
-                    <li class="list-group-item  text-center" th:text="'Address: '+${app.developer.address}"></li>
-                    <li class="list-group-item  text-center" th:text="'Phone Number: '+${app.developer.phone_number}"></li>
-                    <li class="list-group-item  text-center" th:text="'Seniority: '+${app.seniority}"></li>
-                    <li class="list-group-item  text-center" th:text="'Years of Experience: '+${app.years_xp}"></li>
-                    <li class="list-group-item  text-center" th:text="${app.speaks_english} ? 'YES': 'NO'">YES></li>
-                    <li class="list-group-item  text-center" th:text="'Biography: '+${app.developer.biography}"></li>
+                    <li class="list-group-item  text-center" style="color: black" th:text="'Full Name: '+${app.developer.name}"></li>
+                    <li class="list-group-item  text-center" style="color: black" th:text="'E-mail: '+${app.developer.email}"></li>
+                    <li class="list-group-item  text-center" style="color: black" th:text="'Address: '+${app.developer.address}"></li>
+                    <li class="list-group-item  text-center" style="color: black" th:text="'Phone Number: '+${app.developer.phone_number}"></li>
+                    <li class="list-group-item  text-center" style="color: black" th:text="'Seniority: '+${app.seniority}"></li>
+                    <li class="list-group-item  text-center" style="color: black" th:text="'Years of Experience: '+${app.years_xp}"></li>
+                    <li class="list-group-item  text-center" style="color: black" th:text="${app.speaks_english} ? 'YES': 'NO'">YES></li>
+                    <li class="list-group-item  text-center" style="color: black" th:text="'Biography: '+${app.developer.biography}"></li>
                 </ul>
                 <div class="card-body">
                     <a  th:href="@{/interview/c/create/{id}(id=${app.application_id})}" class="btn btn-success" type="submit"

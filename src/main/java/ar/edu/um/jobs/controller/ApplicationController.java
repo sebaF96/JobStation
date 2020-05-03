@@ -39,7 +39,7 @@ public class ApplicationController {
         application.setDeveloper(applicationService.getCurrentDeveloper());
         System.out.println(application);
         applicationService.create(application);
-        return "redirect:/application/c/" + application.getId();
+        return "redirect:/dev/myapplications";
     }
 
     @GetMapping("/c/{id}")
