@@ -28,15 +28,16 @@
                     <li class="list-group-item  text-center" style="color: black"
                         th:text="'Biography: '+${app.developer.biography}"></li>
                 </ul>
-
-                <div class="card-body">
-                    <a th:href="@{/interview/c/create/{id}(id=${app.application_id})}" class="btn btn-success"
-                       type="submit"
-                       style="margin-left: 100px; margin-top: 10px;">Accept
-                    </a>
-                    <button class="btn btn-danger" type="submit" style="margin-top: 10px; margin-right: 30px;">
-                        Decline
-                    </button>
+                <div sec:authorize="hasRole('ROLE_COMPANY')">
+                    <div class="card-body">
+                        <a th:href="@{/interview/c/create/{id}(id=${app.application_id})}" class="btn btn-success"
+                           type="submit"
+                           style="margin-left: 100px; margin-top: 10px;">Accept
+                        </a>
+                        <button class="btn btn-danger" type="submit" style="margin-top: 10px; margin-right: 30px;">
+                            Decline
+                        </button>
+                    </div>
                 </div>
             </div>
 

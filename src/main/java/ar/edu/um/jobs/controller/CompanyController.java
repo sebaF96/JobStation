@@ -37,7 +37,7 @@ public class CompanyController {
     @GetMapping("/myapplications")
     public String companyApplications(Model model) {
         model.addAttribute("applications", companyService.listApplicationsbyCompany());
-        return "vistaaplications de la company";
+        return "table-applications"; /* FALTA TABLE COMPANY APPLICATIONS*/
     }
 
     @GetMapping("/myinterviews")

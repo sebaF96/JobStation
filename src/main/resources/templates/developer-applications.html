@@ -25,7 +25,7 @@
                     <td th:text="${app.job.company.name}">Bugisoft</td>
                     <td th:text="${app.seniority}">Junior</td>
 
-                    <td><a th:href="@{/application/c/{id}(id=${app.application_id})}" class="btn btn-primary">View Application</a></td>
+                    <td><a th:href="@{/application/{id}(id=${app.application_id})}" class="btn btn-primary">View Application</a></td>
                 </tr>
             </table>
         </div>
