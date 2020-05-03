@@ -25,7 +25,7 @@
                         <li class="list-group-item text-black-50" th:text="'Slots: ' + ${job.available_slots}">Slot</li>
                     </ul>
                     <div class="card-body">
-                        <a href="#" class="card-link text-black-50">See More</a>
+                        <a th:href="@{/job/{id}(id=${job.job_id})}" class="card-link text-black-50">See More</a>
                     </div>
                 </div>
                 <br>

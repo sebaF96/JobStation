@@ -43,6 +43,6 @@ public class CompanyController {
     @GetMapping("/myinterviews")
     public String companyInterviews(Model model) {
         model.addAttribute("interviews", companyService.listInterviews());
-        return "vistainterviews de la company";
+        return "table-interviews";
     }
 }

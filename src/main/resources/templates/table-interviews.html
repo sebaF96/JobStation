@@ -1,29 +1,26 @@
 <!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Table Applications Job</title>
-    <link rel="stylesheet" href="../static/css/tables.css">
-</head>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<div th:replace="header.html::head"></div>
 <body>
+<div th:replace="header.html::header" ></div>
 <div class="main-container">
     <div class="row">
-        <div class="col-md-12">
+        <div class="col-md-12" th:object="${interviews}">
 
             <table>
 
                 <thead>
-                <h4> Table INterviews </h4>
+                <h4> My company Interviews </h4>
                 <tr>
-                    <th>Company Name</th>
+                    <th>Developer</th>
                     <th>Date</th>
-                    <th>Description</th>
+                    <th>Time</th>
                 </tr>
                 </thead>
-                <tr>
-                    <td>Mercado Libre</td>
-                    <td>26-04-22</td>
-                    <td>Saber ingles</td>
+                <tr th:each="interview : ${interviews}">
+                    <td th:text="${interview.developer.name}">Mercado Libre</td>
+                    <td th:text="${interview.date}">26-04-22</td>
+                    <td th:text="${interview.time}">12:00</td>
                     <td><a href="#" class="btn btn-primary">View Interview</a></td>
                 </tr>
                 <tr>
