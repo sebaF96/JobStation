@@ -42,7 +42,7 @@ public class ApplicationController {
         return "redirect:/dev/myapplications";
     }
 
-    @GetMapping("/c/{id}")
+    @GetMapping("/{id}")
     public String getApplication(@PathVariable Long id, Model model) {
         model.addAttribute("seniorities", Seniority.values());
         model.addAttribute("app", applicationService.get(id).get());
