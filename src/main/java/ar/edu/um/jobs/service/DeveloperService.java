@@ -7,24 +7,36 @@ import ar.edu.um.jobs.model.User;
 import ar.edu.um.jobs.repository.ApplicationRepository;
 import ar.edu.um.jobs.repository.InterviewRepository;
 import ar.edu.um.jobs.repository.UserRepository;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.List;
 
 @Service
-public class DeveloperService extends GenericServiceImpl<User> {
+public class DeveloperService extends GenericServiceImpl<User>{
 
     private final UserRepository developerRepository;
     private final InterviewRepository interviewRepository;
     private final ApplicationRepository applicationRepository;
+    private final PasswordEncoder passwordEncoder;
 
-    public DeveloperService(UserRepository developerRepository, InterviewRepository interviewRepository, ApplicationRepository applicationRepository, UserRepository userRepository) {
+    public DeveloperService(UserRepository developerRepository, InterviewRepository interviewRepository, ApplicationRepository applicationRepository, UserRepository userRepository, PasswordEncoder passwordEncoder) {
         this.developerRepository = developerRepository;
         this.interviewRepository = interviewRepository;
         this.applicationRepository = applicationRepository;
+        this.passwordEncoder = passwordEncoder;
+    }
 
+    @Override
+    public User create(User entity) {
+        if (developerRepository.findByEmail(entity.getEmail()).isPresent()) return null;
+
+        entity.setPassword(passwordEncoder.encode(entity.getPassword()));
+        return developerRepository.save(entity);
     }
 
     @Override
@@ -32,21 +44,20 @@ public class DeveloperService extends GenericServiceImpl<User> {
         return developerRepository;
     }
 
-    public List<Interview> listInterviews() {
+    public Page<Interview> listInterviews(Integer currentPage,Integer pageSize) {
 
         Long developerId = developerRepository.getCurrentUser().get().getId();
 
-        return interviewRepository.findByDeveloper(this.get(developerId).get());
+        return interviewRepository.findByDeveloperOrderByDate(PageRequest.of(currentPage-1,pageSize),this.get(developerId).get());
 
     }
 
 
-    public List<Application> listApplications() {
+    public Page<Application> listApplications(Integer currentPage, Integer pageSize) {
 
         Long developerId = developerRepository.getCurrentUser().get().getId();
 
-        return applicationRepository.findByDeveloper(this.get(developerId).get());
-
+        return applicationRepository.findByDeveloper(PageRequest.of(currentPage-1,pageSize),this.get(developerId).get());
     }
 
     public Developer getCurrentDeveloper() {

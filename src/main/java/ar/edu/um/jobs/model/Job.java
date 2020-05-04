@@ -27,6 +27,8 @@ public class Job implements Serializable, Identificable {
     private JobType job_type;
     private Integer available_slots;
     private String description;
+    @Column(columnDefinition = "tinyint(1) default 1")
+    private Boolean active = true;
 
 
     @Override

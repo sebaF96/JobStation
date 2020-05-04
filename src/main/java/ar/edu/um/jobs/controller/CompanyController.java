@@ -2,19 +2,19 @@ package ar.edu.um.jobs.controller;
 
 import ar.edu.um.jobs.model.Company;
 import ar.edu.um.jobs.service.CompanyService;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import javax.validation.Valid;
 
 @RequestMapping("/comp")
 @Controller
 public class CompanyController {
-    @Autowired
+
     private final CompanyService companyService;
 
     public CompanyController(CompanyService companyService) {
@@ -28,21 +28,27 @@ public class CompanyController {
     }
 
     @PostMapping(value = "/register")
-    public String registerPost(@Valid Company company, Model model) {
+    public String registerPost(@Valid Company company, RedirectAttributes redirectAttributes) {
         company.setRoles("ROLE_COMPANY");
-        companyService.create(company);
-        return "register-company";
+        if (companyService.create(company) == null) {
+            redirectAttributes.addFlashAttribute("flash", "There's an account with this email already!");
+            return "redirect:/comp/register";
+        }
+        return "redirect:/login";
     }
 
     @GetMapping("/myapplications")
     public String companyApplications(Model model) {
         model.addAttribute("applications", companyService.listApplicationsbyCompany());
-        return "vistaaplications de la company";
+        model.addAttribute("company", companyService.getCurrentCompany());
+        return "table-aplications-company";
     }
 
     @GetMapping("/myinterviews")
     public String companyInterviews(Model model) {
         model.addAttribute("interviews", companyService.listInterviews());
-        return "vistainterviews de la company";
+        return "table-interviews";
     }
+
+
 }

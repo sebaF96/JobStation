@@ -31,21 +31,12 @@ public class JobService extends GenericServiceImpl<Job> {
         return jobRepository;
     }
 
-    public List<Application> getApplications(Long jobId) {
-        List<Application> applications = new ArrayList<>();
-
-        if (this.get(jobId).isPresent()) {
-            applications = applicationRepository.findByJob(this.get(jobId).get());
-        }
-
-        return applications.stream().sorted((x, y) -> y.getPriority().compareTo(x.getPriority())).collect(Collectors.toList());
-
-    }
 
     public List<Job> getAvailableJobs() {
         return this.getAll()
                 .stream()
                 .filter(j -> j.getAvailable_slots() >= 1)
+                .filter(Job::getActive)
                 .collect(Collectors.toList());
     }
 
@@ -56,6 +47,7 @@ public class JobService extends GenericServiceImpl<Job> {
     public List<Job> getMyJobs(Long companyId) {
         return this.getAll().stream()
                 .filter(j -> j.getCompany().getId().equals(companyId))
+                .filter(Job::getActive)
                 .collect(Collectors.toList());
     }
 
@@ -67,6 +59,14 @@ public class JobService extends GenericServiceImpl<Job> {
         job.setAvailable_slots(updated_job.getAvailable_slots());
         job.setDescription(updated_job.getDescription());
         job.setJob_type(updated_job.getJob_type());
+
+        jobRepository.save(job);
+    }
+
+    @Override
+    public void remove(Long value) {
+        Job job = this.get(value).get();
+        job.setActive(false);
 
         jobRepository.save(job);
     }

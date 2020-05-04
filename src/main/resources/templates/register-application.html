@@ -10,10 +10,10 @@
                 <h4> Form Application Register </h4>
                 <label>Years of experience</label>
                 <input th:field="*{years_xp}" class="controls" type="number" name="years-experience"
-                       id="years-experience" min="0">
+                       id="years-experience" min="0" required>
                 <label>Do you speak English?</label>
 
-                <select class="form-control form-control-lg" th:field="*{speaks_english}">
+                <select class="form-control form-control-lg" th:field="*{speaks_english}" required>
 
                     <option th:value="false"
                             th:text="NO"></option>
@@ -23,7 +23,7 @@
 
                 <br>
                 <label>Seniority</label>
-                <select class="form-control form-control-lg" th:field="*{seniority}">
+                <select class="form-control form-control-lg" th:field="*{seniority}" required>
                     <option value="null" hidden>Select Seniority</option>
                     <option th:each="seniority : ${seniorities}" th:value="${seniority.name()}"
                             th:text="${seniority.toString()}"></option>
