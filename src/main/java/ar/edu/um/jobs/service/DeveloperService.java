@@ -33,6 +33,8 @@ public class DeveloperService extends GenericServiceImpl<User>{
 
     @Override
     public User create(User entity) {
+        if (developerRepository.findByEmail(entity.getEmail()).isPresent()) return null;
+
         entity.setPassword(passwordEncoder.encode(entity.getPassword()));
         return developerRepository.save(entity);
     }

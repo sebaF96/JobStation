@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import javax.validation.Valid;
 import java.util.List;
@@ -37,9 +38,14 @@ public class DeveloperController {
     }
 
     @PostMapping(value = "/register")
-    public String registerPost(@Valid Developer developer) {
+    public String registerPost(@Valid Developer developer, RedirectAttributes redirectAttributes) {
         developer.setRoles("ROLE_DEVELOPER");
-        developerService.create(developer);
+
+        if (developerService.create(developer) == null) {
+            redirectAttributes.addFlashAttribute("flash", "There's an account with this email already!");
+            return "redirect:/dev/register";
+        }
+
         return "redirect:/login";
     }
 

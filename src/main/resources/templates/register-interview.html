@@ -9,9 +9,9 @@
             <div class="form-register">
                 <h4> Form Interview Register </h4>
 
-                <label>Interview Date</label> <input type="date" th:value="*{date}" th:field="*{date}" />
-                <label>Interview Time</label><input type="time" th:value="*{time}" th:field="*{time}" />
-                <label>Description</label><textarea th:field="*{description}" class="controls"></textarea>
+                <label>Interview Date</label> <input type="date" th:value="*{date}" th:field="*{date}" required/>
+                <label>Interview Time</label><input type="time" th:value="*{time}" th:field="*{time}" required/>
+                <label>Description</label><textarea th:field="*{description}" class="controls" required></textarea>
                 <input class="botons" type="submit" value="Schedule interview">
             </div>
         </form>
