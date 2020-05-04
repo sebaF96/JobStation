@@ -28,7 +28,7 @@
                     <td><a th:href="@{/application/c/job/{id}(id=${job.job_id})}" class="btn btn-primary">View Apps</a>
                     </td>
                     <td><a th:href="@{/job/c/edit/{id}(id=${job.job_id})}" class="btn btn-success">Edit</a></td>
-                    <td><a href="#" class="btn btn-danger">Delete</a></td>
+                    <td><a th:href="@{/job/c/delete/{id}(id=${job.job_id})}" class="btn btn-danger">Delete</a></td>
                 </tr>
                 </tbody>
             </table>

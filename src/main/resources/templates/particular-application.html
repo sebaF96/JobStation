@@ -30,7 +30,8 @@
                 </ul>
                 <div sec:authorize="hasRole('ROLE_COMPANY')">
                     <th:block th:if="${hasinterview}">
-                        <p>Interview scheduled</p>
+                        <br>
+                        <h4>Interview scheduled</h4>
 
                     </th:block>
                     <div th:unless="${hasinterview}">

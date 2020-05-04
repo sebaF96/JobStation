@@ -74,4 +74,11 @@ public class JobController {
         return "redirect:/job/c/myjobs";
     }
 
+    @GetMapping("/c/delete/{id}")
+    public String deleteJob(@PathVariable Long id) {
+        jobService.remove(id);
+
+        return "redirect:/job/c/myjobs";
+    }
+
 }
