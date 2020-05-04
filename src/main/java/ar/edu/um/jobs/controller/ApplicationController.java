@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.server.ResponseStatusException;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import javax.validation.Valid;
@@ -47,7 +48,7 @@ public class ApplicationController {
     @GetMapping("/{id}")
     public String getApplication(@PathVariable Long id, Model model) {
         model.addAttribute("seniorities", Seniority.values());
-        model.addAttribute("app", applicationService.get(id).get());
+        model.addAttribute("app", applicationService.get(id).orElseThrow(NotFoundException::new));
         model.addAttribute("hasinterview", applicationService.hasInterview(id));
 
         return "particular-application";
