@@ -4,9 +4,7 @@ import ar.edu.um.jobs.model.Application;
 import ar.edu.um.jobs.model.Developer;
 import ar.edu.um.jobs.model.Interview;
 import ar.edu.um.jobs.service.DeveloperService;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
-import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -24,7 +22,7 @@ import java.util.stream.IntStream;
 @RequestMapping("dev")
 @Controller
 public class DeveloperController {
-    @Autowired
+
     private final DeveloperService developerService;
 
     public DeveloperController(DeveloperService developerService) {

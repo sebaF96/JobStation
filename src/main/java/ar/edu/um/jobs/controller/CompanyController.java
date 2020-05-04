@@ -2,7 +2,6 @@ package ar.edu.um.jobs.controller;
 
 import ar.edu.um.jobs.model.Company;
 import ar.edu.um.jobs.service.CompanyService;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;

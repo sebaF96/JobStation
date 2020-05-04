@@ -28,7 +28,7 @@ public class JobController {
 
     @GetMapping("/{id}")
     public String getJob(@PathVariable Long id, Model model) {
-        Job job = jobService.get(id).get();
+        Job job = jobService.get(id).orElseThrow(NotFoundException::new);
         model.addAttribute("job", job);
 
         return "particular-job";
@@ -63,7 +63,7 @@ public class JobController {
     @GetMapping("/c/edit/{id}")
     public String editGet(@PathVariable Long id, Model model) {
         model.addAttribute("jobtypes", JobType.values());
-        model.addAttribute("job", jobService.get(id).get());
+        model.addAttribute("job", jobService.get(id).orElseThrow(NotFoundException::new));
         model.addAttribute("action", "/job/c/edit/" + id);
         model.addAttribute("title", "Update job");
         return "register-job";

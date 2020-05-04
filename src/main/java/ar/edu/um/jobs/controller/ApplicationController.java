@@ -1,7 +1,6 @@
 package ar.edu.um.jobs.controller;
 
 import ar.edu.um.jobs.model.Application;
-import ar.edu.um.jobs.model.Job;
 import ar.edu.um.jobs.model.Seniority;
 import ar.edu.um.jobs.service.ApplicationService;
 import org.springframework.stereotype.Controller;
@@ -10,11 +9,9 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.server.ResponseStatusException;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import javax.validation.Valid;
-import java.util.List;
 
 @RequestMapping("/application")
 @Controller
