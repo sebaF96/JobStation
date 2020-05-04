@@ -55,6 +55,7 @@ public class CompanyService extends GenericServiceImpl<User> {
         applications = applicationRepository.findAll()
                 .stream()
                 .filter(a -> a.getJob().getCompany().getId().equals(companyId))
+                .filter(a -> !this.hasInterview(a.getId()))
                 .collect(Collectors.toList());
 
 
@@ -72,6 +73,13 @@ public class CompanyService extends GenericServiceImpl<User> {
                 .collect(Collectors.toList());
 
 
+    }
+
+    public boolean hasInterview(Long id) {
+        return interviewRepository.findAll()
+                .stream()
+                .filter(i -> i.getApplication().getApplication_id().equals(id))
+                .count() >= 1;
     }
 
     public Company getCurrentCompany() {
