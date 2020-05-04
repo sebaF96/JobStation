@@ -7,6 +7,8 @@ import ar.edu.um.jobs.model.User;
 import ar.edu.um.jobs.repository.ApplicationRepository;
 import ar.edu.um.jobs.repository.InterviewRepository;
 import ar.edu.um.jobs.repository.UserRepository;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Service;
 
@@ -32,21 +34,20 @@ public class DeveloperService extends GenericServiceImpl<User> {
         return developerRepository;
     }
 
-    public List<Interview> listInterviews() {
+    public Page<Interview> listInterviews(Integer currentPage,Integer pageSize) {
 
         Long developerId = developerRepository.getCurrentUser().get().getId();
 
-        return interviewRepository.findByDeveloper(this.get(developerId).get());
+        return interviewRepository.findByDeveloper(PageRequest.of(currentPage-1,pageSize),this.get(developerId).get());
 
     }
 
 
-    public List<Application> listApplications() {
+    public Page<Application> listApplications(Integer currentPage, Integer pageSize) {
 
         Long developerId = developerRepository.getCurrentUser().get().getId();
 
-        return applicationRepository.findByDeveloper(this.get(developerId).get());
-
+        return applicationRepository.findByDeveloper(PageRequest.of(currentPage-1,pageSize),this.get(developerId).get());
     }
 
     public Developer getCurrentDeveloper() {

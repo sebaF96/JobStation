@@ -25,6 +25,38 @@
                     <td><a href="#" class="btn btn-primary">View Interview</a></td>
                 </tr>
             </table>
+            <nav th:if="${interviews.totalPages > 0}" aria-label="navigation">
+                <ul class="pagination justify-content-center">
+
+                    <th:block th:if="${interviews.hasPrevious()}">
+                        <li class="page-item">
+                            <a class="page-link"
+                               th:href="@{/dev/myinterviews(size=${interviews.size},page=${interviews.number})}"
+                               href="#"> <span aria-hidden="true">&laquo;</span> Anterior</a></li>
+                    </th:block>
+
+                    <th:block th:each="pageNumber : ${pageNumbers}">
+                        <li th:if="${interviews.number+1 == pageNumber}"
+                            class="page-item active"><span class="page-link"
+                                                           th:text=${pageNumber}>#</span></li>
+                        <!-- en el th:if evaluamos si coincide con el N° de Pag actual, e imprimimos el texto-->
+                        <li th:unless="${interviews.number+1 == pageNumber}"
+                            class="page-item"><a class="page-link"
+                                                 th:href="@{/dev/myinterviews(size=${interviews.size}, page=${pageNumber})}"
+                                                 th:text=${pageNumber} href="#">1</a></li>
+                        <!-- en el th:unless es el negativo del th:if, por lo tanto, si no coinciden se muestra el enlace a esa pag.-->
+                    </th:block>
+
+                    </th:block>
+                    <th:block th:if="${interviews.hasNext()}">
+                        <li class="page-item"><a class="page-link"
+                                                 th:href="@{/dev/myinterviews(size=${interviews.size},page=${interviews.number+2})}"
+                                                 href="#" aria-label="Siguiente"> Siguiente <span aria-hidden="true">&raquo;</span></a>
+                        </li>
+                    </th:block>
+
+                </ul>
+            </nav>
         </div>
     </div>
 </div>

@@ -59,7 +59,6 @@ public class CompanyService extends GenericServiceImpl<User> {
     public List<Interview> listInterviews() {
         Long companyId = companyRepository.getCurrentUser().get().getId();
 
-
         return interviewRepository.findAll()
                  .stream()
                  .filter(interview -> interview.getApplication().getJob().getCompany().getId().equals(companyId))
