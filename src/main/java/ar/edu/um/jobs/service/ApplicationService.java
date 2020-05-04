@@ -2,6 +2,7 @@ package ar.edu.um.jobs.service;
 
 import ar.edu.um.jobs.model.*;
 import ar.edu.um.jobs.repository.ApplicationRepository;
+import ar.edu.um.jobs.repository.InterviewRepository;
 import ar.edu.um.jobs.repository.JobRepository;
 import ar.edu.um.jobs.repository.UserRepository;
 import org.springframework.data.jpa.repository.JpaRepository;
@@ -17,11 +18,13 @@ public class ApplicationService extends GenericServiceImpl<Application> {
     private final ApplicationRepository applicationRepository;
     private final UserRepository userRepository;
     private final JobRepository jobRepository;
+    private final InterviewRepository interviewRepository;
 
-    public ApplicationService(ApplicationRepository applicationRepository, UserRepository userRepository, JobRepository jobRepository) {
+    public ApplicationService(ApplicationRepository applicationRepository, UserRepository userRepository, JobRepository jobRepository, InterviewRepository interviewRepository) {
         this.applicationRepository = applicationRepository;
         this.userRepository = userRepository;
         this.jobRepository = jobRepository;
+        this.interviewRepository = interviewRepository;
     }
 
     @Override
@@ -55,5 +58,12 @@ public class ApplicationService extends GenericServiceImpl<Application> {
                 .filter(a -> a.getJob().getJob_id().equals(id))
                 .sorted((x, y) -> y.getPriority().compareTo(x.getPriority()))
                 .collect(Collectors.toList());
+    }
+
+    public boolean hasInterview(Long id) {
+        return interviewRepository.findAll()
+                .stream()
+                .filter(i -> i.getApplication().getApplication_id().equals(id))
+                .count() >= 1;
     }
 }

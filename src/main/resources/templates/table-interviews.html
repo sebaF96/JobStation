@@ -15,13 +15,14 @@
                     <th>Developer</th>
                     <th>Date</th>
                     <th>Time</th>
+                    <th>Application</th>
                 </tr>
                 </thead>
                 <tr th:each="interview : ${interviews}">
                     <td th:text="${interview.developer.name}">Mercado Libre</td>
                     <td th:text="${interview.date}">26-04-22</td>
                     <td th:text="${interview.time}">12:00</td>
-                    <td><a href="#" class="btn btn-primary">View Interview</a></td>
+                    <td><a th:href="@{/application/{id}(id=${interview.application.application_id})}" class="btn btn-primary">View Application</a></td>
                 </tr>
                 <tr>
                 </tr>

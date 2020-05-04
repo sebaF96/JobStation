@@ -37,7 +37,6 @@ public class ApplicationController {
     public String createAppPost(@PathVariable Long id, @Valid Application application) {
         application.setJob(applicationService.getJobById(id));
         application.setDeveloper(applicationService.getCurrentDeveloper());
-        System.out.println(application);
         applicationService.create(application);
         return "redirect:/dev/myapplications";
     }
@@ -46,6 +45,8 @@ public class ApplicationController {
     public String getApplication(@PathVariable Long id, Model model) {
         model.addAttribute("seniorities", Seniority.values());
         model.addAttribute("app", applicationService.get(id).get());
+        model.addAttribute("hasinterview", applicationService.hasInterview(id));
+
         return "particular-application";
     }
 
@@ -57,5 +58,13 @@ public class ApplicationController {
 
         return "table-applications";
 
+    }
+
+    @GetMapping("/c/delete/{id}")
+    public String deleteApplication(@PathVariable Long id) {
+
+        applicationService.remove(id);
+
+        return "redirect:/comp/myapplications";
     }
 }
