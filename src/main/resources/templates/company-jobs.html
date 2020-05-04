@@ -6,12 +6,14 @@
 <body>
 <div th:replace="header.html::header"></div>
 
-<div class="main-container">
+<div class="container-fluid">
+    <div th:replace="developer-applications::flash-success"></div>
+
     <div class="row">
         <div class="col-md-12" style="text-align: center">
             <table class="table table-dark table-striped">
                 <thead>
-                <h4> Your Company Jobs </h4>
+                <h1 style="color: black; text-align: center"> Your Company Jobs </h1>
                 <tr>
                     <th>Title</th>
                     <th>Salary</th>

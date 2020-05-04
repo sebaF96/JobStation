@@ -15,7 +15,7 @@ import javax.validation.Valid;
 @RequestMapping("/comp")
 @Controller
 public class CompanyController {
-    @Autowired
+
     private final CompanyService companyService;
 
     public CompanyController(CompanyService companyService) {

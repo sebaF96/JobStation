@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import javax.validation.Valid;
 
@@ -43,10 +44,11 @@ public class JobController {
     }
 
     @PostMapping("/c/create")
-    public String createJobPost(@Valid Job job) {
+    public String createJobPost(@Valid Job job, RedirectAttributes redirectAttributes) {
 
         job.setCompany(jobService.getCurrentCompany());
         jobService.create(job);
+        redirectAttributes.addFlashAttribute("flash", "Job successfully created!");
 
         return "redirect:/job/c/myjobs";
 
@@ -68,15 +70,17 @@ public class JobController {
     }
 
     @PostMapping("/c/edit/{id}")
-    public String editPost(Job updated_job, @PathVariable Long id) {
+    public String editPost(Job updated_job, @PathVariable Long id, RedirectAttributes redirectAttributes) {
 
         jobService.update(updated_job, id);
+        redirectAttributes.addFlashAttribute("flash", "Job successfully edited!");
         return "redirect:/job/c/myjobs";
     }
 
     @GetMapping("/c/delete/{id}")
-    public String deleteJob(@PathVariable Long id) {
+    public String deleteJob(@PathVariable Long id, RedirectAttributes redirectAttributes) {
         jobService.remove(id);
+        redirectAttributes.addFlashAttribute("flash", "Job successfully deleted!");
 
         return "redirect:/job/c/myjobs";
     }

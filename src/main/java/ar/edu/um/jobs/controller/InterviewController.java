@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import javax.validation.Valid;
 
@@ -30,12 +31,13 @@ public class InterviewController {
         return "register-interview";
     }
     @PostMapping("/c/create/{id}")
-    public String postCreateInterview(@PathVariable Long id, @Valid Interview interview){
+    public String postCreateInterview(@PathVariable Long id, @Valid Interview interview, RedirectAttributes redirectAttributes){
         interview.setApplication(interviewService.getApplicationById(id));
         interview.setDeveloper(interviewService.getApplicationById(id).getDeveloper());
-        System.out.println(interview);
+        redirectAttributes.addFlashAttribute("flash", "Interview scheduled!");
+
         interviewService.create(interview);
-        return "redirect:/";
+        return "redirect:/comp/myinterviews";
 
     }
  
