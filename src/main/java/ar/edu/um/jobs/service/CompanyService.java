@@ -21,7 +21,7 @@ public class CompanyService extends GenericServiceImpl<User> {
     private final UserRepository companyRepository;
     private final ApplicationRepository applicationRepository;
     private final JobRepository jobRepository;
-    private  final InterviewRepository interviewRepository;
+    private final InterviewRepository interviewRepository;
 
 
     public CompanyService(UserRepository companyRepository, ApplicationRepository applicationRepository, JobRepository jobRepository, InterviewRepository interviewRepository) {
@@ -60,15 +60,18 @@ public class CompanyService extends GenericServiceImpl<User> {
         Long companyId = companyRepository.getCurrentUser().get().getId();
 
         return interviewRepository.findAll()
-                 .stream()
-                 .filter(interview -> interview.getApplication().getJob().getCompany().getId().equals(companyId))
-                 .filter(interview -> interview.getDate().isAfter(LocalDate.now()))
-                 .sorted(Comparator.comparing(Interview::getDate))
-                 .collect(Collectors.toList());
+                .stream()
+                .filter(interview -> interview.getApplication().getJob().getCompany().getId().equals(companyId))
+                .filter(interview -> interview.getDate().isAfter(LocalDate.now().minusDays(1)))
+                .sorted(Comparator.comparing(Interview::getDate))
+                .collect(Collectors.toList());
 
 
     }
 
+    public Company getCurrentCompany() {
+        return (Company) companyRepository.getCurrentUser().get();
+    }
 
 
 }

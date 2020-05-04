@@ -9,20 +9,25 @@
 
 
         <div class="col-md-12">
-            <h1 th:text="'Interviews of ' + ${name}" style="text-align: center"></h1>
+            <h1 th:text="'Interviews of ' + ${name}" style="text-align: center; color: black"></h1>
             <table style="color: white">
                 <thead>
                 <tr>
-                    <th>Date Interview</th>
+                    <th>Date</th>
+                    <th>Time</th>
+                    <th>Job</th>
+                    <th>Company</th>
                     <th>Description</th>
+
                 </tr>
                 </thead>
                 <tr th:each="interview : ${interviews}">
                     <td th:text="${interview.date}">03/05/20</td>
+                    <td th:text="${interview.time}">12:20</td>
                     <td th:text="${interview.application.job.job_title}">kjvfgfdjv</td>
                     <td th:text="${interview.application.job.company.name}"></td>
                     <td th:text="${interview.description}"></td>
-                    <td><a href="#" class="btn btn-primary">View Interview</a></td>
+
                 </tr>
             </table>
             <nav th:if="${interviews.totalPages > 0}" aria-label="navigation">

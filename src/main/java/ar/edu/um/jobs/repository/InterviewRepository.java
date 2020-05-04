@@ -13,7 +13,6 @@ import java.util.List;
 @Repository
 public interface InterviewRepository extends JpaRepository<Interview, Long> {
 
-    List<Interview> findByDeveloper(User developer);
-    Page<Interview> findByDeveloper(Pageable pageable, User developer);
+    Page<Interview> findByDeveloperOrderByDate(Pageable pageable, User developer);
 
 }

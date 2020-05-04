@@ -37,7 +37,8 @@ public class CompanyController {
     @GetMapping("/myapplications")
     public String companyApplications(Model model) {
         model.addAttribute("applications", companyService.listApplicationsbyCompany());
-        return "table-applications"; /* FALTA TABLE COMPANY APPLICATIONS*/
+        model.addAttribute("company", companyService.getCurrentCompany());
+        return "table-aplications-company";
     }
 
     @GetMapping("/myinterviews")

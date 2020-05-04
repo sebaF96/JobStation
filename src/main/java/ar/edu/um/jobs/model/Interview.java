@@ -28,6 +28,7 @@ public class Interview implements Identificable, Serializable {
     private Application application;
     @DateTimeFormat(pattern = "yyyy-MM-dd")
     private LocalDate date;
+    @DateTimeFormat(iso = DateTimeFormat.ISO.TIME)
     private LocalTime time;
     @OneToOne
     private Developer developer;

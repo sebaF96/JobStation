@@ -38,7 +38,7 @@ public class DeveloperService extends GenericServiceImpl<User> {
 
         Long developerId = developerRepository.getCurrentUser().get().getId();
 
-        return interviewRepository.findByDeveloper(PageRequest.of(currentPage-1,pageSize),this.get(developerId).get());
+        return interviewRepository.findByDeveloperOrderByDate(PageRequest.of(currentPage-1,pageSize),this.get(developerId).get());
 
     }
 
