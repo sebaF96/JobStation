@@ -10,23 +10,33 @@ import ar.edu.um.jobs.repository.UserRepository;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.List;
 
 @Service
-public class DeveloperService extends GenericServiceImpl<User> {
+public class DeveloperService extends GenericServiceImpl<User>{
 
     private final UserRepository developerRepository;
     private final InterviewRepository interviewRepository;
     private final ApplicationRepository applicationRepository;
+    private final PasswordEncoder passwordEncoder;
 
-    public DeveloperService(UserRepository developerRepository, InterviewRepository interviewRepository, ApplicationRepository applicationRepository, UserRepository userRepository) {
+    public DeveloperService(UserRepository developerRepository, InterviewRepository interviewRepository, ApplicationRepository applicationRepository, UserRepository userRepository, PasswordEncoder passwordEncoder) {
         this.developerRepository = developerRepository;
         this.interviewRepository = interviewRepository;
         this.applicationRepository = applicationRepository;
+        this.passwordEncoder = passwordEncoder;
+    }
 
+    @Override
+    public User create(User entity) {
+        if (developerRepository.findByEmail(entity.getEmail()).isPresent()) return null;
+
+        entity.setPassword(passwordEncoder.encode(entity.getPassword()));
+        return developerRepository.save(entity);
     }
 
     @Override

@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import javax.validation.Valid;
 import java.util.List;
@@ -34,10 +35,12 @@ public class ApplicationController {
     }
 
     @PostMapping("/d/create/{id}")
-    public String createAppPost(@PathVariable Long id, @Valid Application application) {
+    public String createAppPost(@PathVariable Long id, @Valid Application application, RedirectAttributes redirectAttributes) {
         application.setJob(applicationService.getJobById(id));
         application.setDeveloper(applicationService.getCurrentDeveloper());
         applicationService.create(application);
+        redirectAttributes.addFlashAttribute("flash", "Application successfully sent!");
+
         return "redirect:/dev/myapplications";
     }
 

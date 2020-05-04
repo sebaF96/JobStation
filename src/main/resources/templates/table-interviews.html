@@ -3,14 +3,15 @@
 <div th:replace="header.html::head"></div>
 <body>
 <div th:replace="header.html::header" ></div>
-<div class="main-container">
+<div class="container-fluid">
+    <div th:replace="developer-applications::flash-success"></div>
     <div class="row">
         <div class="col-md-12" th:object="${interviews}">
 
             <table>
 
                 <thead>
-                <h4> My company Interviews </h4>
+                <h1 style="text-align: center; color: black"> My company Interviews </h1>
                 <tr>
                     <th>Developer</th>
                     <th>Date</th>

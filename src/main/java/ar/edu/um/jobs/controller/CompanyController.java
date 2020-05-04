@@ -8,13 +8,14 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import javax.validation.Valid;
 
 @RequestMapping("/comp")
 @Controller
 public class CompanyController {
-    @Autowired
+
     private final CompanyService companyService;
 
     public CompanyController(CompanyService companyService) {
@@ -28,9 +29,12 @@ public class CompanyController {
     }
 
     @PostMapping(value = "/register")
-    public String registerPost(@Valid Company company, Model model) {
+    public String registerPost(@Valid Company company, RedirectAttributes redirectAttributes) {
         company.setRoles("ROLE_COMPANY");
-        companyService.create(company);
+        if (companyService.create(company) == null) {
+            redirectAttributes.addFlashAttribute("flash", "There's an account with this email already!");
+            return "redirect:/comp/register";
+        }
         return "redirect:/login";
     }
 
@@ -46,4 +50,6 @@ public class CompanyController {
         model.addAttribute("interviews", companyService.listInterviews());
         return "table-interviews";
     }
+
+
 }
