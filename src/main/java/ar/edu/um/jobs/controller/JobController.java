@@ -48,7 +48,7 @@ public class JobController {
         job.setCompany(jobService.getCurrentCompany());
         jobService.create(job);
 
-        return "register-job";
+        return "redirect:/job/c/myjobs";
 
     }
 

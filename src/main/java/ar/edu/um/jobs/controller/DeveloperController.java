@@ -40,7 +40,7 @@ public class DeveloperController {
     public String registerPost(@Valid Developer developer) {
         developer.setRoles("ROLE_DEVELOPER");
         developerService.create(developer);
-        return "register-developer";
+        return "redirect:/login";
     }
 
     @GetMapping("/myinterviews")

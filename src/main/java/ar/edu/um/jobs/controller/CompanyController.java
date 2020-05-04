@@ -31,7 +31,7 @@ public class CompanyController {
     public String registerPost(@Valid Company company, Model model) {
         company.setRoles("ROLE_COMPANY");
         companyService.create(company);
-        return "register-company";
+        return "redirect:/login";
     }
 
     @GetMapping("/myapplications")
