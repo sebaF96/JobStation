@@ -68,7 +68,11 @@ public class JobService extends GenericServiceImpl<Job> {
 
         jobRepository.save(job);
     }
-    public List<Job> filter(String query){
-        return jobRepository.findByJobTitleContainingOrDescriptionContaining(query,query);
+
+    public List<Job> filter(String query) {
+        return jobRepository.findByJobTitleContainingOrDescriptionContaining(query, query).stream()
+                .filter(Job::getActive)
+                .filter(job -> job.getAvailable_slots() >= 1)
+                .collect(Collectors.toList());
     }
 }
