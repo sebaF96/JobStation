@@ -13,8 +13,10 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Service
 public class DeveloperService extends GenericServiceImpl<User>{
@@ -48,7 +50,9 @@ public class DeveloperService extends GenericServiceImpl<User>{
 
         Long developerId = developerRepository.getCurrentUser().get().getId();
 
-        return interviewRepository.findByDeveloperOrderByDate(this.get(developerId).get());
+        return interviewRepository.findByDeveloperOrderByDate(this.get(developerId).get()).stream()
+                .filter(interview -> interview.getDate().isAfter(LocalDate.now().minusDays(1)))
+                .collect(Collectors.toList());
 
     }
 
