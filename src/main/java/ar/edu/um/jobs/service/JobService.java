@@ -1,6 +1,5 @@
 package ar.edu.um.jobs.service;
 
-import ar.edu.um.jobs.model.Application;
 import ar.edu.um.jobs.model.Company;
 import ar.edu.um.jobs.model.Job;
 import ar.edu.um.jobs.repository.ApplicationRepository;
@@ -9,7 +8,6 @@ import ar.edu.um.jobs.repository.UserRepository;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -54,7 +52,7 @@ public class JobService extends GenericServiceImpl<Job> {
     public void update(Job updated_job, Long id) {
         Job job = this.get(id).get();
 
-        job.setJob_title(updated_job.getJob_title());
+        job.setJobTitle(updated_job.getJobTitle());
         job.setSalary(updated_job.getSalary());
         job.setAvailable_slots(updated_job.getAvailable_slots());
         job.setDescription(updated_job.getDescription());
@@ -69,5 +67,8 @@ public class JobService extends GenericServiceImpl<Job> {
         job.setActive(false);
 
         jobRepository.save(job);
+    }
+    public List<Job> filter(String query){
+        return jobRepository.findByJobTitleContainingOrDescriptionContaining(query,query);
     }
 }

@@ -55,7 +55,7 @@ public class ApplicationController {
     public String getApplicationsByJob(@PathVariable Long id, Model model) {
 
         model.addAttribute("applications", applicationService.getAppsByJob(id));
-        model.addAttribute("job", applicationService.getJobById(id).getJob_title());
+        model.addAttribute("job", applicationService.getJobById(id).getJobTitle());
 
         return "table-applications";
 

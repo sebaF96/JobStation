@@ -73,7 +73,7 @@ public class JobController {
     public String editPost(Job updated_job, @PathVariable Long id, RedirectAttributes redirectAttributes) {
 
         jobService.update(updated_job, id);
-        redirectAttributes.addFlashAttribute("flash", "Job successfully edited!");
+        redirectAttributes.addFlashAttribute("flash", "Job successfully updated!");
         return "redirect:/job/c/myjobs";
     }
 
