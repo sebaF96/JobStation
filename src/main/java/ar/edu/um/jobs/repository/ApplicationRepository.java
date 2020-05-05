@@ -16,5 +16,4 @@ public interface ApplicationRepository extends JpaRepository<Application, Long> 
     List<Application> findByJob(Job job);
 
     List<Application> findByDeveloper(User developer);
-    Page<Application> findByDeveloper(Pageable pageable,User developer);
 }

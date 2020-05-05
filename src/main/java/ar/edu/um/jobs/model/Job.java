@@ -21,7 +21,7 @@ public class Job implements Serializable, Identificable {
     private Long job_id;
     @ManyToOne
     private Company company;
-    private String job_title;
+    private String jobTitle;
     private Double salary;
     @Enumerated(EnumType.STRING)
     private JobType job_type;

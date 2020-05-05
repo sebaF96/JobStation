@@ -30,7 +30,7 @@
                 </thead>
 
                 <tr th:each="app : ${applications}">
-                    <td th:text="${app.job.job_title}">Python Engineer</td>
+                    <td th:text="${app.job.jobTitle}">Python Engineer</td>
                     <td th:text="${app.job.company.name}">Bugisoft</td>
                     <td th:text="${app.seniority}">Junior</td>
 
@@ -38,39 +38,6 @@
                         Application</a></td>
                 </tr>
             </table>
-
-            <nav th:if="${applications.totalPages > 0}" aria-label="navigation">
-                <ul class="pagination justify-content-center">
-
-                    <th:block th:if="${applications.hasPrevious()}">
-                        <li class="page-item">
-                            <a class="page-link"
-                               th:href="@{/dev/myapplications(size=${applications.size},page=${applications.number})}"
-                               href="#"> <span aria-hidden="true">&laquo;</span> Anterior</a></li>
-                    </th:block>
-
-                    <th:block th:each="pageNumber : ${pageNumbers}">
-                        <li th:if="${applications.number+1 == pageNumber}"
-                            class="page-item active"><span class="page-link"
-                                                           th:text=${pageNumber}>#</span></li>
-                        <!-- en el th:if evaluamos si coincide con el N° de Pag actual, e imprimimos el texto-->
-                        <li th:unless="${applications.number+1 == pageNumber}"
-                            class="page-item"><a class="page-link"
-                                                 th:href="@{/dev/myapplications(size=${applications.size}, page=${pageNumber})}"
-                                                 th:text=${pageNumber} href="#">1</a></li>
-                        <!-- en el th:unless es el negativo del th:if, por lo tanto, si no coinciden se muestra el enlace a esa pag.-->
-                    </th:block>
-
-                    </th:block>
-                    <th:block th:if="${applications.hasNext()}">
-                        <li class="page-item"><a class="page-link"
-                                                 th:href="@{/dev/myapplications(size=${applications.size},page=${applications.number+2})}"
-                                                 href="#" aria-label="Siguiente"> Siguiente <span aria-hidden="true">&raquo;</span></a>
-                        </li>
-                    </th:block>
-
-                </ul>
-            </nav>
 
         </div>
     </div>

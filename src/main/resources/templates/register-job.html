@@ -9,7 +9,7 @@
         <form method="post" th:action="@{${action}}" th:object="${job}">
             <div class="form-register">
                 <h4 th:text="${title}"> Create job </h4>
-                <label>Job Title</label><input th:field="*{job_title}" class="controls" type="text" name="job-title"
+                <label>Job Title</label><input th:field="*{jobTitle}" class="controls" type="text" name="job-title"
                                                id="job-title" required>
                 <label>Job Salary</label><input th:field="*{salary}" class="controls" type="text" name="job-salary"
                                                 id="job-salary" required>
