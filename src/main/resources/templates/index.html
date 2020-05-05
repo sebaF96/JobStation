@@ -7,6 +7,18 @@
 <!--<h1 class="title"> JobStation </h1>-->
 <div class="container">
     <div class="row">
+        <h1 style="color: black;">Job Station</h1>
+        <div class="col-md-12">
+                <form action="/productos/filtar" method="post">
+                    <form class="form-inline">
+                        <input class="form-inline-sm-2" type="search" placeholder="Search" aria-label="Search"
+                               style="padding-top: 5px; margin-top: 20px;">
+                        <button class="btn btn-dark" type="button" style="padding-top: 10px;">Search</button>
+                    </form>
+                </form> <!-- Filtrar por nombre -->
+            </div>
+        </div>
+    <div class="row">
         <div th:each="job : ${jobs}">
             <div class="col-md-3">
                 <div class="card bg-primary text-white" style="width: 18rem;">
