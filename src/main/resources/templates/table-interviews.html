@@ -13,6 +13,7 @@
                 <thead>
                 <h1 style="text-align: center; color: black"> My company Interviews </h1>
                 <tr>
+                    <th>Job</th>
                     <th>Developer</th>
                     <th>Date</th>
                     <th>Time</th>
@@ -20,6 +21,7 @@
                 </tr>
                 </thead>
                 <tr th:each="interview : ${interviews}">
+                    <td th:text="${interview.application.job.jobTitle}"></td>
                     <td th:text="${interview.developer.name}">Mercado Libre</td>
                     <td th:text="${interview.date}">26-04-22</td>
                     <td th:text="${interview.time}">12:00</td>

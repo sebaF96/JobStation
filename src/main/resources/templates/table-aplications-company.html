@@ -10,21 +10,23 @@
             <table>
 
                 <thead>
-                <h1 th:text="'Applications of: ' + ${company.name}" style="text-align: center; color: black"> Applications </h1>
+                <h1 th:text="'Applications of ' + ${company.name}" style="text-align: center; color: black"> Applications </h1>
                 <tr>
+                    <th>Job</th>
                     <th>E-Mail</th>
                     <th>Dev. name</th>
                     <th>Seniority</th>
-                    <th>Years of experience</th>
+                    <th>Experience</th>
                     <th>Speaks english</th>
                 </tr>
                 </thead>
                 <tbody>
                 <tr th:each="app : ${applications}" style="color: white">
+                    <td th:text="${app.job.jobTitle}"></td>
                     <td th:text="${app.developer.email}">nacho@gmail.com</td>
                     <td th:text="${app.developer.name}">Ignacio Fernandez</td>
                     <td th:text="${app.seniority.toString()}">30 years</td>
-                    <td th:text="${app.years_xp}">10</td>
+                    <td th:text="${app.years_xp} + ' years'">10</td>
                     <td th:text="${app.speaks_english} ? 'YES': 'NO'">YES</td>
                     <td><a th:href="@{/application/{id}(id=${app.application_id})}" class="btn btn-primary">View App</a></td>
                 </tr>

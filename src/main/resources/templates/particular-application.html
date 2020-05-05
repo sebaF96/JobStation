@@ -11,6 +11,8 @@
                 <ul class="list-group list-group-flush  text-center"
                     style="font-family: 'DejaVu Sans Mono', monospace;">
                     <li class="list-group-item  text-center" style="color: black"
+                        th:text="'Job: '+${app.job.jobTitle}"></li>
+                    <li class="list-group-item  text-center" style="color: black"
                         th:text="'Full Name: '+${app.developer.name}"></li>
                     <li class="list-group-item  text-center" style="color: black"
                         th:text="'E-mail: '+${app.developer.email}"></li>
@@ -23,7 +25,7 @@
                     <li class="list-group-item  text-center" style="color: black"
                         th:text="'Years of Experience: '+${app.years_xp}"></li>
                     <li class="list-group-item  text-center" style="color: black"
-                        th:text="${app.speaks_english} ? 'YES': 'NO'">YES>
+                        th:text="${app.speaks_english} ? 'Speaks english': 'Doesn´t speak english'">YES>
                     </li>
                     <li class="list-group-item  text-center" style="color: black"
                         th:text="'Biography: '+${app.developer.biography}"></li>

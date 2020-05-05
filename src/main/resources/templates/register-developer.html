@@ -11,7 +11,7 @@
         <div class="col-md-12">
 
             <form method="post" th:action="@{/dev/register}" th:object="${developer}">
-            <h4> Form Register Developer</h4>
+            <h4> Create a Developer account</h4>
             <label>E-Mail</label><input th:field="*{email}"class="controls" type="email" name="email" id="email" required>
             <label>Full Name</label><input th:field="*{name}"class="controls" type="text" name="fullname" id="fullname" required>
             <label>Password</label><input th:field="*{password}"class="controls" type="password" name="password" id="password" required>

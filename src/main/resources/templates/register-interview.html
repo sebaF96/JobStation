@@ -7,7 +7,7 @@
     <div class="col-md-12">
         <form method="post" th:action="@{${action}}" th:object="${interview}">
             <div class="form-register">
-                <h4> Form Interview Register </h4>
+                <h4> Create an interview </h4>
 
                 <label>Interview Date</label> <input type="date" th:value="*{date}" th:field="*{date}" required/>
                 <label>Interview Time</label><input type="time" th:value="*{time}" th:field="*{time}" required/>
