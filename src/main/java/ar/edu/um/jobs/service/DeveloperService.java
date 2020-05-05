@@ -44,20 +44,20 @@ public class DeveloperService extends GenericServiceImpl<User>{
         return developerRepository;
     }
 
-    public Page<Interview> listInterviews(Integer currentPage,Integer pageSize) {
+    public List<Interview> listInterviews() {
 
         Long developerId = developerRepository.getCurrentUser().get().getId();
 
-        return interviewRepository.findByDeveloperOrderByDate(PageRequest.of(currentPage-1,pageSize),this.get(developerId).get());
+        return interviewRepository.findByDeveloperOrderByDate(this.get(developerId).get());
 
     }
 
 
-    public Page<Application> listApplications(Integer currentPage, Integer pageSize) {
+    public List<Application> listApplications() {
 
         Long developerId = developerRepository.getCurrentUser().get().getId();
 
-        return applicationRepository.findByDeveloper(PageRequest.of(currentPage-1,pageSize),this.get(developerId).get());
+        return applicationRepository.findByDeveloper(this.get(developerId).get());
     }
 
     public Developer getCurrentDeveloper() {

@@ -48,48 +48,16 @@ public class DeveloperController {
     }
 
     @GetMapping("/myinterviews")
-    public String devInterviews(Model model, @RequestParam("page") Optional<Integer> page, @RequestParam("size") Optional<Integer> size) {
-        Integer currentPage = 1;
-        Integer pageSize = 5;
-        int totalPages;
-
-        Page<Interview> dataPage;
-        if (!page.isPresent() && !size.isPresent()) {
-            dataPage = developerService.listInterviews(currentPage, pageSize);
-        } else {
-            dataPage = developerService.listInterviews(page.get(), size.get());
-        }
-
-        totalPages = dataPage.getTotalPages();
-        if (totalPages > 0) {
-            List<Integer> pageNumbers = IntStream.rangeClosed(1, totalPages).boxed().collect(Collectors.toList());
-            model.addAttribute("pageNumbers", pageNumbers);
-        }
-        model.addAttribute("interviews", dataPage);
+    public String devInterviews(Model model) {
+        model.addAttribute("interviews", developerService.listInterviews());
         model.addAttribute("name", developerService.getCurrentDeveloper().getName());
 
         return "developer-interviews";
     }
 
     @GetMapping("/myapplications")
-    public String devApplications(Model model, @RequestParam("page") Optional<Integer> page, @RequestParam("size") Optional<Integer> size) {
-        Integer currentPage = 1;
-        Integer pageSize = 5;
-        int totalPages;
-
-        Page<Application> dataPage;
-        if (!page.isPresent() && !size.isPresent()) {
-            dataPage = developerService.listApplications(currentPage, pageSize);
-        } else {
-            dataPage = developerService.listApplications(page.get(), size.get());
-        }
-
-        totalPages = dataPage.getTotalPages();
-        if (totalPages > 0) {
-            List<Integer> pageNumbers = IntStream.rangeClosed(1, totalPages).boxed().collect(Collectors.toList());
-            model.addAttribute("pageNumbers", pageNumbers);
-        }
-        model.addAttribute("applications", dataPage);
+    public String devApplications(Model model) {
+        model.addAttribute("applications", developerService.listApplications());
         model.addAttribute("name", developerService.getCurrentDeveloper().getName());
 
         return "developer-applications";
