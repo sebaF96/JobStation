@@ -1,3 +1,2 @@
 src/main/resources/static/js/* linguist-vendored
-src/main/resources/templates/register* linguist-vendored
-src/main/resources/templates/particular* linguist-vendored
+src/main/resources/templates/* linguist-vendored
